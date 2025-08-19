@@ -137,17 +137,21 @@
         // Funktion zum dynamischen Erstellen der Tabellenzeilen aus den Daten.
         function generateTableRows(data) {
             const tableBody = document.getElementById('format-table-body');
-            tableBody.innerHTML = '';
-            
+            tableBody.innerHTML = ''; // Leere den Tabellenkörper
+
             data.forEach(item => {
-                let category = '';
-                const dateiart = item['Dateiart'] ? item['Dateiart'].toLowerCase() : '';
-                // Die Kategorisierung ist hier etwas vereinfacht
-                if (dateiart.includes('text') || dateiart.includes('textverarbeitung')) category = 'text';
-                else if (dateiart.includes('bild') || dateiart.includes('vektorgrafiken')) category = 'image';
-                else if (dateiart.includes('multimedia')) category = 'multimedia';
-                else if (dateiart.includes('daten') || dateiart.includes('geo-daten') || dateiart.includes('cad')) category = 'data';
+                // Versuche, 'Kategorie' direkt aus dem JSON-Objekt zu lesen, ansonsten leite es ab
+                let category = item['Kategorie'] ? item['Kategorie'].toLowerCase() : '';
                 
+                // Fallback, falls 'Kategorie' im JSON fehlt (oder zur Validierung)
+                if (!category) {
+                    const dateiart = item['Dateiart'] ? item['Dateiart'].toLowerCase() : '';
+                    if (dateiart.includes('text') || dateiart.includes('textverarbeitung')) category = 'text';
+                    else if (dateiart.includes('bild') || dateiart.includes('vektorgrafiken')) category = 'image';
+                    else if (dateiart.includes('multimedia') || dateiart.includes('musik') || dateiart.includes('video/film') || dateiart.includes('3d')) category = 'multimedia';
+                    else if (dateiart.includes('daten') || dateiart.includes('geo-daten') || dateiart.includes('cad') || dateiart.includes('tabellen') || dateiart.includes('datenbanken') || dateiart.includes('geoinformationssysteme') || dateiart.includes('statistik') || dateiart.includes('webseiten') || dateiart.includes('webarchiv') || dateiart.includes('bagit') || dateiart.includes('rohdaten') || dateiart.includes('bibliographische daten') || dateiart.includes('metadatenformate')) category = 'data';
+                }
+
                 const status = item['Ampel'] ? item['Ampel'].toLowerCase() : '';
 
                 const row = document.createElement('tr');
@@ -162,7 +166,7 @@
                         <span class="flex items-center">
                             <span class="w-2.5 h-2.5 rounded-full mr-2
                                 ${status === 'grün' ? 'bg-green-500' : ''}
-                                ${status === 'orange' ? 'bg-amber-500' : ''}
+                                ${status === 'gelb' ? 'bg-orange-500' : ''}
                                 ${status === 'rot' ? 'bg-red-500' : ''}">
                             </span>
                             ${getStatusText(status)}
@@ -223,7 +227,6 @@
             categoryButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     activeCategory = activeCategory === button.dataset.category ? null : button.dataset.category;
-                    activeStatus = null; // Filter resetten
                     updateButtonState();
                     applyFilters();
                 });
@@ -233,7 +236,6 @@
             statusButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     activeStatus = activeStatus === button.dataset.status ? null : button.dataset.status;
-                    activeCategory = null; // Filter resetten
                     updateButtonState();
                     applyFilters();
                 });
@@ -252,11 +254,8 @@
             applyFilters();
         }
         
-        // Die Daten wurden von einer CSV-Zeichenkette in ein JSON-Array von Objekten umgewandelt.
-        // Der String ist nun korrekt maskiert, um Fehler beim Parsen zu vermeiden.
-        
-        // JSON-Daten als String einbetten
-        const fileFormatsJSONString = `
+         // JSON-Daten als String einbetten
+         const fileFormatsJSONString = `
 [
   {
     "Dateiart": "Text",
@@ -276,7 +275,7 @@
     "Dateiart": "Text",
     "Datenformate": "Comma-Separated Values (CSV)",
     "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
-    "Ampel": "gelb",
+    "Ampel": "orange",
     "Kategorie": "text"
   },
   {
