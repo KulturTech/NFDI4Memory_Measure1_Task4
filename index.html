@@ -24,8 +24,8 @@
             box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.5);
         }
         button[data-status="orange"].active-filter {
-            background-color: #c2410c; /* Dunklerer Orange-Ton für den Schatten */
-            box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.5);
+            background-color: #d97706; /* Dunklerer Gelb-Ton für den Schatten */
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.5);
         }
         button[data-status="rot"].active-filter {
             background-color: #b91c1c;
@@ -41,7 +41,8 @@
     </style>
 </head>
 <body class="bg-gray-100 p-4 sm:p-8">
-   <div class="container mx-auto max-w-7xl bg-white rounded-xl shadow-lg p-6 sm:p-8">
+
+    <div class="container mx-auto max-w-7xl bg-white rounded-xl shadow-lg p-6 sm:p-8">
         <!-- Flexbox-Klassen wurden hier hinzugefügt, um das Logo und den Titel zu zentrieren -->
         <header class="flex flex-col items-center text-center mb-8">
             <div class="logo mb-4">
@@ -50,26 +51,27 @@
                          Das Attribut `src` wurde auf einen relativen Pfad geändert.
                          Sie müssen die Logodatei (z.B. Logo_for_memory_RGB.svg)
                          in Ihr GitHub-Repository hochladen, idealerweise in einen Ordner namens `images`. -->
-                    <img alt="Logo NFDI4Memory" src="images/Logo_for_memory_RGB.svg"
+                    <img alt="Logo NFDI4Memory" src="https://placehold.co/200x80/000000/FFFFFF/png?text=Logo+NFDI4Memory"
                          onerror="this.onerror=null; this.src='images/Logo_for_memory_RGB.svg'"
                          class="mx-auto h-32 w-auto">
                 </a>
             </div>
-        </div>
-        <div class="pageTitle">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Interaktive Tafel gängiger Dateiformate (Langzeitarchivierung)</h1>
-        </div>
-        <p class="text-black-500 mt-6">Diese Anwendung enthält eine Liste von Dateiformaten, die in den historisch arbeitenden Wissenschaften gängig sind. Über eine Filteroption haben Sie die Möglichkeit, diese Liste von Dateiformaten auf Empfehlungen für die Langzeitarchivierung hin zu durchsuchen. Dazu hat die Task Area „Data Quality“ in NFDI4Memory ein Ampelsystem entwickelt, um zwischen empfohlenen (grün), bedingt empfohlenen (orange) und nicht empfohlenen (rot) Dateiformaten zu unterscheiden.</p>
-        <p>Die Langzeitverfügbarkeit (LZV) von Daten ist von den Formateigenschaften, den Lizenzbestimmungen sowie der Verbreitung und Nutzung der Daten abhängig. Dateiformate, die für eine Langzeitverfügbarkeit in Frage kommen, erlauben eine verlustfreie Speicherung ohne Kompression und sie sind einfach dekodierbar oder unmittelbar lesbar. Die empfohlenen oder bedingt empfohlenen Dateiformate sind mit einem ISO-Standard verbunden. Sie sollten</p>
-        <ul class="list-disc list-inside text-left text-gray-700 mx-auto max-w-2xl mt-4">
-            <li>nicht proprietär, also nicht an eine Software oder einen Hersteller gebunden sein.</li>
-            <li>mit unterschiedlichen Programmen verwendbar sein</li>
-            <li>mit einer offenen Lizenz ausgezeichnet sein</li>
-            <li>über eine frei zugängliche Dokumentation einschließelich  technischer Spezifikationen verfügen.</li>
-        </ul>
-        <h2 class="text-1xl sm:text-3xl font-bold text-gray-800 mt-8">Filteroptionen</h2>
-    </header>
-         <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
+            <div class="pageTitle">
+                <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Interaktive Tafel gängiger Dateiformate (Langzeitarchivierung)</h1>
+            </div>
+            <p class="text-gray-500 mt-6">Diese Anwendung enthält eine Liste von Dateiformaten, die in den historisch arbeitenden Wissenschaften gängig sind. Über eine Filteroption haben Sie die Möglichkeit, diese Liste von Dateiformaten auf Empfehlungen für die Langzeitarchivierung hin zu durchsuchen. Dazu hat die Task Area „Data Quality“ in NFDI4Memory ein Ampelsystem entwickelt, um zwischen empfohlenen (grün), bedingt empfohlenen (orange) und nicht empfohlenen (rot) Dateiformaten zu unterscheiden.</p>
+            <p>Die Langzeitverfügbarkeit (LZV) von Daten ist von den Formateigenschaften, den Lizenzbestimmungen sowie der Verbreitung und Nutzung der Daten abhängig. Dateiformate, die für eine Langzeitverfügbarkeit in Frage kommen, erlauben eine verlustfreie Speicherung ohne Kompression und sie sind einfach dekodierbar oder unmittelbar lesbar. Die empfohlenen oder bedingt empfohlenen Dateiformate sind mit einem ISO-Standard verbunden. Sie sollten</p>
+            <ul class="list-disc list-inside text-left text-gray-700 mx-auto max-w-2xl mt-4">
+                <li>offen dokumentiert und frei von Patenten sein.</li>
+                <li>verlustfreie Speicherung ohne Kompression ermöglichen.</li>
+                <li>einfach dekodierbar oder unmittelbar lesbar sein.</li>
+                <li>mit einem ISO-Standard verbunden sein.</li>
+            </ul>
+            <h2 class="text-1xl sm:text-3xl font-bold text-gray-800 mt-8">Filteroptionen</h2>
+        </header>
+
+        <!-- Filter-Buttons -->
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
             <div class="flex flex-wrap justify-center gap-2">
                 <button id="showAll" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
                     Alle Formate
@@ -91,7 +93,7 @@
                 <button data-status="grün" class="filter-btn text-white bg-green-500 hover:bg-green-600 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
                     Empfohlen
                 </button>
-                <button data-status="orange" class="filter-btn text-white bg-orange-500 hover:bg-orange-600 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                <button data-status="orange" class="filter-btn text-white bg-amber-500 hover:bg-amber-600 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
                     Bedingt geeignet
                 </button>
                 <button data-status="rot" class="filter-btn text-white bg-red-500 hover:bg-red-600 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
@@ -100,6 +102,7 @@
             </div>
         </div>
 
+        <!-- Die interaktive Tabelle -->
         <div class="overflow-x-auto rounded-lg shadow-md mb-8">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -118,7 +121,7 @@
     </div>
 
     <footer class="text-center text-gray-500 text-sm mt-8">
-        <p>Die Inhalte dieser Webseite stehen unter einer Creative Commons Namensnennung 4.0 International Lizenz. Mithilfe des  <a href="https://github.com/lzv-nrw/file-formats-table"> Github-Repositoriums der lzv.nrw </a> haben wir diese Tafel entwickelt.</p>
+        <p>Die Inhalte dieser Webseite stehen unter einer Creative Commons Namensnennung 4.0 International Lizenz.</p>
     </footer>
 
     <script>
@@ -135,21 +138,17 @@
         // Funktion zum dynamischen Erstellen der Tabellenzeilen aus den Daten.
         function generateTableRows(data) {
             const tableBody = document.getElementById('format-table-body');
-            tableBody.innerHTML = ''; // Leere den Tabellenkörper
-
+            tableBody.innerHTML = '';
+            
             data.forEach(item => {
-                // Versuche, 'Kategorie' direkt aus dem JSON-Objekt zu lesen, ansonsten leite es ab
-                let category = item['Kategorie'] ? item['Kategorie'].toLowerCase() : '';
+                let category = '';
+                const dateiart = item['Dateiart'] ? item['Dateiart'].toLowerCase() : '';
+                // Die Kategorisierung ist hier etwas vereinfacht
+                if (dateiart.includes('text') || dateiart.includes('textverarbeitung')) category = 'text';
+                else if (dateiart.includes('bild') || dateiart.includes('vektorgrafiken')) category = 'image';
+                else if (dateiart.includes('multimedia')) category = 'multimedia';
+                else if (dateiart.includes('daten') || dateiart.includes('geo-daten') || dateiart.includes('cad')) category = 'data';
                 
-                // Fallback, falls 'Kategorie' im JSON fehlt (oder zur Validierung)
-                if (!category) {
-                    const dateiart = item['Dateiart'] ? item['Dateiart'].toLowerCase() : '';
-                    if (dateiart.includes('text') || dateiart.includes('textverarbeitung')) category = 'text';
-                    else if (dateiart.includes('bild') || dateiart.includes('vektorgrafiken')) category = 'image';
-                    else if (dateiart.includes('multimedia') || dateiart.includes('musik') || dateiart.includes('video/film') || dateiart.includes('3d')) category = 'multimedia';
-                    else if (dateiart.includes('daten') || dateiart.includes('geo-daten') || dateiart.includes('cad') || dateiart.includes('tabellen') || dateiart.includes('datenbanken') || dateiart.includes('geoinformationssysteme') || dateiart.includes('statistik') || dateiart.includes('webseiten') || dateiart.includes('webarchiv') || dateiart.includes('bagit') || dateiart.includes('rohdaten') || dateiart.includes('bibliographische daten') || dateiart.includes('metadatenformate')) category = 'data';
-                }
-
                 const status = item['Ampel'] ? item['Ampel'].toLowerCase() : '';
 
                 const row = document.createElement('tr');
@@ -164,7 +163,7 @@
                         <span class="flex items-center">
                             <span class="w-2.5 h-2.5 rounded-full mr-2
                                 ${status === 'grün' ? 'bg-green-500' : ''}
-                                ${status === 'orange' ? 'bg-orange-500' : ''}
+                                ${status === 'orange' ? 'bg-amber-500' : ''}
                                 ${status === 'rot' ? 'bg-red-500' : ''}">
                             </span>
                             ${getStatusText(status)}
@@ -225,6 +224,7 @@
             categoryButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     activeCategory = activeCategory === button.dataset.category ? null : button.dataset.category;
+                    activeStatus = null; // Filter resetten
                     updateButtonState();
                     applyFilters();
                 });
@@ -234,6 +234,7 @@
             statusButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     activeStatus = activeStatus === button.dataset.status ? null : button.dataset.status;
+                    activeCategory = null; // Filter resetten
                     updateButtonState();
                     applyFilters();
                 });
@@ -251,6 +252,9 @@
             updateButtonState();
             applyFilters();
         }
+        
+        // Die Daten wurden von einer CSV-Zeichenkette in ein JSON-Array von Objekten umgewandelt.
+        // Der String ist nun korrekt maskiert, um Fehler beim Parsen zu vermeiden.
         
         // JSON-Daten als String einbetten
         const fileFormatsJSONString = `
@@ -273,7 +277,7 @@
     "Dateiart": "Text",
     "Datenformate": "Comma-Separated Values (CSV)",
     "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
-    "Ampel": "orange",
+    "Ampel": "gelb",
     "Kategorie": "text"
   },
   {
@@ -483,7 +487,7 @@
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Drawing Interchange Format, AutoCAD (*.dxf)",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
+    "Ampel": "gelb",
     "Kategorie": "image"
   },
   {
@@ -1328,8 +1332,4 @@
         document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
-
 </html>
-
-
-
