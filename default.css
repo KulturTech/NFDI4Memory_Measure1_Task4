@@ -1,0 +1,169 @@
+/* default.css */
+
+/* Allgemeine Stile für den Body und Haupt-Container */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+}
+
+.header .logo img {
+  height: 60px;
+}
+
+.header .pageTitle {
+  margin-left: 20px;
+}
+
+.main {
+  padding: 20px;
+}
+
+/* Stile für die interaktive Tafel */
+.periodicTable {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.periodicTable .flexCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.periodicTable .catTitle {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 8px;
+}
+
+.element {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  cursor: pointer;
+}
+
+.element:hover {
+  transform: translateY(-5px);
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}
+
+.element h1 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.element .tiptext {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.element .application {
+  font-size: 0.8em;
+  color: #999;
+}
+
+.element .source-info {
+  font-size: 0.7em;
+  color: #333;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+/* Ampel-Stile */
+.traffic-light-green {
+  background-color: #b3e6b3;
+  border-left: 5px solid #28a745;
+}
+
+.traffic-light-yellow {
+  background-color: #ffe6b3;
+  border-left: 5px solid #ffc107;
+}
+
+.traffic-light-red {
+  background-color: #ffb3b3;
+  border-left: 5px solid #dc3545;
+}
+
+/* Stile für die Filter-Buttons */
+.filterbox {
+  margin-bottom: 20px;
+}
+
+.filterbox .filterRow1,
+.filterbox .filterRow2,
+.filterbox .filterRow3 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.filterbox button {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filterbox button:hover,
+.filterbox button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Stile für die Legende */
+.legendbox {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.legendbox h3 {
+  margin-top: 0;
+}
+
+/* Stile für die neue Ampel-Legende */
+.ampel-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}

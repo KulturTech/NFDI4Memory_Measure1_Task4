@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Tafel gängiger Dateiformate</title>
+    <!-- Verwende Tailwind CSS für ein sauberes, responsives Design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Definiert einen blauen Rahmen für aktive Kategorie-Buttons */
+        button[data-category].active-filter, #showAll.active-filter {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            background-color: #3b82f6; /* Setzt die Farbe auf Blau für Kategorien */
+        }
+        /* Definiert spezifische Farben und Schatten für aktive Ampel-Buttons */
+        button[data-status="grün"].active-filter {
+            background-color: #15803d;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.5);
+        }
+        button[data-status="gelb"].active-filter {
+            background-color: #a16207;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.5);
+        }
+        button[data-status="rot"].active-filter {
+            background-color: #b91c1c;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.5);
+        }
+        .filter-btn:hover {
+            opacity: 0.8;
+        }
+        .filter-btn {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8">
+
+  <div class="container mx-auto max-w-7xl bg-white rounded-xl shadow-lg p-6 sm:p-8">
+    <!-- Flexbox-Klassen wurden hier hinzugefügt, um das Logo und den Titel zu zentrieren -->
+    <header class="flex flex-col items-center text-center mb-8">
+        <div class="logo mb-4">
+            <a href="https://4memory.de/ueber-4memory/task-areas/data-quality/">
+                <!-- Das Logo-Bild, das zentriert werden soll -->
+                <img alt="Logo NFDI4Memory" src="P:\\Projekt_NFDI4M\\03_Logos-Vorlagen-Bilder\\04_Logopaket-Styleguide\\RGB\\Logo_for_memory_RGB.svg" class="mx-auto h-32 w-auto">
+            </a>
+        </div>
+        <div class="pageTitle">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Interaktive Tafel gängiger Dateiformate (Langzeitarchivierung)</h1>
+        </div>
+        <p class="text-black-500 mt-6">Diese Anwendung enthält eine Liste von Dateiformaten, die in den historisch arbeitenden Wissenschaften gängig sind. Über eine Filteroption haben Sie die Möglichkeit, diese Liste von Dateiformaten auf Empfehlungen für die Langzeitarchivierung hin zu durchsuchen. Dazu hat die Task Area „Data Quality“ in NFDI4Memory ein Ampelsystem entwickelt, um zwischen empfohlenen (grün), bedingt empfohlenen (orange) und nicht empfohlenen (rot) Dateiformaten zu unterscheiden.</p>
+        <p>Die Langzeitverfügbarkeit (LZV) von Daten ist von den Formateigenschaften, den Lizenzbestimmungen sowie der Verbreitung und Nutzung der Daten abhängig. Dateiformate, die für eine Langzeitverfügbarkeit in Frage kommen, erlauben eine verlustfreie Speicherung ohne Kompression und sie sind einfach dekodierbar oder unmittelbar lesbar. Die empfohlenen oder bedingt empfohlenen Dateiformate sind mit einem ISO-Standard verbunden. Sie sollten</p>
+        <ul class="list-disc list-inside text-left text-gray-700 mx-auto max-w-2xl mt-4">
+            <li>nicht proprietär, also nicht an eine Software oder einen Hersteller gebunden sein.</li>
+            <li>mit unterschiedlichen Programmen verwendbar sein</li>
+            <li>mit einer offenen Lizenz ausgezeichnet sein</li>
+            <li>über eine frei zugängliche Dokumentation einschließelich  technischer Spezifikationen verfügen.</li>
+        </ul>
+        <h2 class="text-1xl sm:text-3xl font-bold text-gray-800 mt-8">Filteroptionen</h2>
+    </header>
+         <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
+            <div class="flex flex-wrap justify-center gap-2">
+                <button id="showAll" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                    Alle Formate
+                </button>
+                <button data-category="text" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                    Text & Textverarbeitung
+                </button>
+                <button data-category="image" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                    Bild & Vektorgrafiken
+                </button>
+                <button data-category="multimedia" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                    Multimedia & Musik
+                </button>
+                <button data-category="data" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                    Daten & Tabellen
+                </button>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 mt-4 sm:mt-0">
+                <button data-status="grün" class="filter-btn text-white bg-green-500 hover:bg-green-600 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                    Empfohlen
+                </button>
+                <button data-status="orange" class="filter-btn text-white bg-orange-500 hover:bg-yellow-600 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                    Bedingt geeignet
+                </button>
+                <button data-status="rot" class="filter-btn text-white bg-red-500 hover:bg-red-600 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                    Nicht empfohlen
+                </button>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto rounded-lg shadow-md mb-8">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dateiart</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Datenformate</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ampelstatus</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quelle(n)</th>
+                    </tr>
+                </thead>
+                <tbody id="format-table-body" class="bg-white divide-y divide-gray-200">
+                    <tr><td colspan="4" class="text-center py-4 text-gray-500">Lade Daten...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="text-center text-gray-500 text-sm mt-8">
+        <p>Die Inhalte dieser Webseite stehen unter einer Creative Commons Namensnennung 4.0 International Lizenz. Mithilfe des  <a href="https://github.com/lzv-nrw/file-formats-table"> Github-Repositoriums der lzv.nrw </a> haben wir diese Tafel entwickelt.</p>
+    </footer>
+
+    <script>
+        // Hilfsfunktion, die den Ampelstatus in Text umwandelt.
+        function getStatusText(status) {
+            switch (status) {
+                case 'grün': return 'Empfohlen';
+                case 'orange': return 'Bedingt geeignet';
+                case 'rot': return 'Nicht empfohlen';
+                default: return 'Unbekannt';
+            }
+        }
+
+        // Funktion zum dynamischen Erstellen der Tabellenzeilen aus den Daten.
+        function generateTableRows(data) {
+            const tableBody = document.getElementById('format-table-body');
+            tableBody.innerHTML = ''; // Leere den Tabellenkörper
+
+            data.forEach(item => {
+                // Versuche, 'Kategorie' direkt aus dem JSON-Objekt zu lesen, ansonsten leite es ab
+                let category = item['Kategorie'] ? item['Kategorie'].toLowerCase() : '';
+                
+                // Fallback, falls 'Kategorie' im JSON fehlt (oder zur Validierung)
+                if (!category) {
+                    const dateiart = item['Dateiart'] ? item['Dateiart'].toLowerCase() : '';
+                    if (dateiart.includes('text') || dateiart.includes('textverarbeitung')) category = 'text';
+                    else if (dateiart.includes('bild') || dateiart.includes('vektorgrafiken')) category = 'image';
+                    else if (dateiart.includes('multimedia') || dateiart.includes('musik') || dateiart.includes('video/film') || dateiart.includes('3d')) category = 'multimedia';
+                    else if (dateiart.includes('daten') || dateiart.includes('geo-daten') || dateiart.includes('cad') || dateiart.includes('tabellen') || dateiart.includes('datenbanken') || dateiart.includes('geoinformationssysteme') || dateiart.includes('statistik') || dateiart.includes('webseiten') || dateiart.includes('webarchiv') || dateiart.includes('bagit') || dateiart.includes('rohdaten') || dateiart.includes('bibliographische daten') || dateiart.includes('metadatenformate')) category = 'data';
+                }
+
+                const status = item['Ampel'] ? item['Ampel'].toLowerCase() : '';
+
+                const row = document.createElement('tr');
+                row.className = `filter-item bg-white hover:bg-gray-50 transition-colors duration-150`;
+                row.setAttribute('data-category', category);
+                row.setAttribute('data-status', status);
+                
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item['Dateiart'] || ''}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item['Datenformate'] || ''}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <span class="flex items-center">
+                            <span class="w-2.5 h-2.5 rounded-full mr-2
+                                ${status === 'grün' ? 'bg-green-500' : ''}
+                                ${status === 'gelb' ? 'bg-orange-500' : ''}
+                                ${status === 'rot' ? 'bg-red-500' : ''}">
+                            </span>
+                            ${getStatusText(status)}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${item['Quellen zur Ampel'] || ''}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Logik für die Filterung der Tabellenzeilen
+        function setupFilters() {
+            let activeCategory = null;
+            let activeStatus = null;
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const categoryButtons = document.querySelectorAll('[data-category]');
+            const statusButtons = document.querySelectorAll('[data-status]');
+            const showAllButton = document.getElementById('showAll');
+            const tableBody = document.getElementById('format-table-body');
+            
+            // Hilfsfunktion zum Aktualisieren der Button-UI
+            function updateButtonState() {
+                filterButtons.forEach(btn => btn.classList.remove('active-filter'));
+
+                if (activeCategory || activeStatus) {
+                    if (activeCategory) {
+                        const btn = document.querySelector(`.filter-btn[data-category="${activeCategory}"]`);
+                        if (btn) btn.classList.add('active-filter');
+                    }
+                    if (activeStatus) {
+                        const btn = document.querySelector(`.filter-btn[data-status="${activeStatus}"]`);
+                        if (btn) btn.classList.add('active-filter');
+                    }
+                } else {
+                    showAllButton.classList.add('active-filter');
+                }
+            }
+
+            // Hilfsfunktion zum Anwenden der Filter auf die Tabelle
+            function applyFilters() {
+                tableBody.querySelectorAll('tr').forEach(row => {
+                    const rowCategory = row.dataset.category;
+                    const rowStatus = row.dataset.status;
+
+                    const categoryMatch = !activeCategory || rowCategory === activeCategory;
+                    const statusMatch = !activeStatus || rowStatus === activeStatus;
+
+                    if (categoryMatch && statusMatch) {
+                        row.classList.remove('hidden');
+                    } else {
+                        row.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Event-Listener für Kategoriefilter
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    activeCategory = activeCategory === button.dataset.category ? null : button.dataset.category;
+                    updateButtonState();
+                    applyFilters();
+                });
+            });
+
+            // Event-Listener für Statusfilter
+            statusButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    activeStatus = activeStatus === button.dataset.status ? null : button.dataset.status;
+                    updateButtonState();
+                    applyFilters();
+                });
+            });
+
+            // Event-Listener für "Alle Formate"
+            showAllButton.addEventListener('click', () => {
+                activeCategory = null;
+                activeStatus = null;
+                updateButtonState();
+                applyFilters();
+            });
+
+            // Initialen Zustand setzen
+            updateButtonState();
+            applyFilters();
+        }
+        
+        // JSON-Daten als String einbetten
+        const fileFormatsJSONString = `
+[
+  {
+    "Dateiart": "Text",
+    "Datenformate": "Extensible Markup Language (XML) 1.1",
+    "Quellen zur Ampel": "ETH Zürich (2025): https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "JavaScript Object Notation (JSON)",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "Comma-Separated Values (CSV)",
+    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "gelb",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "Textdatei (TXT) (Codierung UTF-8)",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "Portable Document Format A (PDF A)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "OOXML (Office Open Extensible Markup Language)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "PDF/A-3 (*.pdf)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "Rich Text Format (*.rtf)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "XML mit DTD-Datei oder XML-Schema, JSON, HTML",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "HTML und XML (Die ASCII Texte sind langfristig lesbar; externe Links möglichst vermeiden)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "OpenDocument Formate (*.odm, *.odt, *.odg, *.odc, *.odf)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "JavaScript Object Notation for Linked Data (JSON LD)",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "Resource Description Framework in Attributes (RDFa)",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "Word *.docx",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "LaTeX und TeX (Die ASCII Texte sind langfristig lesbar; allenfalls benutzte lizenzfreie Softwarepakete mit Spezialfonts und resultierendes PDF sollten mitgeliefert werden)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "Markdown (*.md)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "Word *.doc",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Text",
+    "Datenformate": "PowerPoint *.ppt",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Unformatierter Text",
+    "Datenformate": "Unformatierter Text (*.txt, *.asc, *.c, *.h, *.cpp, *.m, *.py, *.r usw.)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Unformatierter Text",
+    "Datenformate": "Markdown (*.md)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "text"
+  },
+  {
+    "Dateiart": "Musik",
+    "Datenformate": "Music Encoding Initiative (MEI)",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Musik",
+    "Datenformate": "MusicXML",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Musik",
+    "Datenformate": "Parsons Code",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Musik",
+    "Datenformate": "Portable Document Format A (PDF A)",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "Master: baseline Tagged Image File Format (TIFF), unkomprimiert; TIFF mit Lempel-Ziv-Welch-Komprimierung (TIFF-LZW)",
+    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "grün",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "Joint Photographic Experts Group (JPEG 1 und JPEG 2000), verlustfrei komprimiert, lizenzfreie Bereiche",
+    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "grün",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "PDF-Format, Typ PDF/A-2",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "Präsentationsformate (Derivate): JPEG, JPEG 2000, Portable Network Graphics (PNG)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "Rohdaten: Digital Negative (DNG)",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "Photoshop (*.psd)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Vektorgrafiken) und CAD",
+    "Datenformate": "Scalable Vector Graphics (SVG)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Vektorgrafiken) und CAD",
+    "Datenformate": "AutoCAD Drawing (*.dwg)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Vektorgrafiken) und CAD",
+    "Datenformate": "Drawing Interchange Format, AutoCAD (*.dxf)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "gelb",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Vektorgrafiken) und CAD",
+    "Datenformate": "Extensible 3D, X3D (*.x3d, *.x3dv, *.x3db)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Vektorgrafiken) und CAD",
+    "Datenformate": "Encapsulated Postscript (*.eps)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Vektorgrafiken) und CAD",
+    "Datenformate": "Grafik InDesign (*.indd), Illustrator (*.ait)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Audio",
+    "Datenformate": "Archivformat: Waveform Audio File-Format (WAV) in Verbindung mit Pulse Code Modulation (PCM); Free Lossless Audio Codec (FLAC)",
+    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Audio",
+    "Datenformate": "Advanced Audio Coding (*.mp4)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Audio",
+    "Datenformate": "MP3 (*.mp3)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Audio",
+    "Datenformate": "Präsentationsformat: MPEG-2 Audiolayer III (MP3)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "Archivformate:",
+    "Quellen zur Ampel": "",
+    "Ampel": "unbekannt",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "Codec FFV1 / Container MKV",
+    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "TIFF mit FFV1 in Matroshka codiert",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "Moving Picture Experts Group Standard MPEG-4",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "Präsentationsformat: MP4 (MPEG-4, part 14)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "MPEG-2 (*.mpg,*.mpeg)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "QuickTime Movie (*.mov)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "Audio Video Interleave (*.avi)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "Windows Media Video (*.wmv)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "weitere Empfehlungen der nestor AG Media",
+    "Quellen zur Ampel": "",
+    "Ampel": "unbekannt",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "Moving Picture Experts Group Motion JPEG 2000 (MJPEG2000)",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "gelb",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "Digital Picture Exchange (DPX), SMPTE 268M-2003, v 2.0",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Video/Film",
+    "Datenformate": "Material Exchange Format (MXF), SMPTE 377M",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "3D",
+    "Datenformate": "Graphics Language Transmission Format (glTF)",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "3D",
+    "Datenformate": "Wavefront Object (OBJ)",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "3D",
+    "Datenformate": "Extensible 3D (X3D)",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "3D",
+    "Datenformate": "Präsentationsformat: glTF, X3D, OBJ",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "3D",
+    "Datenformate": "COLLAborative Design Activity (COLLADA)",
+    "Quellen zur Ampel": "",
+    "Ampel": "rot",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Tabellen",
+    "Datenformate": "Extensible Markup Language (XML) 1.1, mit XML Schema Definition (XSD)",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Tabellen",
+    "Datenformate": "Comma-Separated Values (CSV)",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Tabellen",
+    "Datenformate": "Excel *.xlsx (Containerformat)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Tabellen",
+    "Datenformate": "OpenDocument Formate (*.odm, *.odt, *.odg, *.odc, *.odf)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Tabellen",
+    "Datenformate": "Excel *.xls, *.xlsb (binäre Formate)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Datenbanken",
+    "Datenformate": "Software Independent Archival of Relational Databases (SIARD)",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Datenbanken",
+    "Datenformate": "Structured Query Language (SQL)",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Datenbanken",
+    "Datenformate": "MS Access 2010/2016",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "rot",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Datenbanken",
+    "Datenformate": "Export und externe Speicherung der Datenbankinhalte empfohlen, z. B. als XML, CSV, JSON mit Entitäten-Relationen-Diagramm (ERD)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme (GIS)",
+    "Datenformate": "Vektordaten: Environmental Systems Research Institute ESRI Shapefile",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme (GIS)",
+    "Datenformate": "Vektordaten als ESRI ArcGIS/ARCView ShapeFile",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme (GIS)",
+    "Datenformate": "OGC GeoPackage (OpenSource)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme (GIS)",
+    "Datenformate": "Rasterbilddaten als Geo-TIFF",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme (GIS)",
+    "Datenformate": "ESRI World-File (Rastergrafik)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme (GIS)",
+    "Datenformate": "Keyhole Mark-Up Language (kml)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "orange",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme (GIS)",
+    "Datenformate": "Geography Markup Language (gml)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme (GIS)",
+    "Datenformate": "Längen- und Breitenangaben (alternativ)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme (GIS)",
+    "Datenformate": "Rasterdaten: Open Geospatial Consortium GeoTIFF",
+    "Quellen zur Ampel": "",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Webseiten",
+    "Datenformate": "Hypertext Markup Language (HTML5)",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Webseiten",
+    "Datenformate": "Extensible Hypertext Markup Language (XHTML)",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Webseiten",
+    "Datenformate": "Resource Description Framework in Attributes (RDFa) für das Einbetten von RDF-Statements in HTML und XHTML",
+    "Quellen zur Ampel": "",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Statistik",
+    "Datenformate": "R (Sprache und Umgebung für statistische Berechnungen und Grafiken)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "gelb",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Webarchiv",
+    "Datenformate": "WARC-Format (Web Archive Format)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Webarchiv",
+    "Datenformate": "HTML + CSS (Hyper Text Markup Language + Cascading Style Sheets)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bagit",
+    "Datenformate": "Bagit (File Packaging Format)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bagit",
+    "Datenformate": "ZIP-Format (PKZip)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bagit",
+    "Datenformate": "GZIP (GNU Zip)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bagit",
+    "Datenformate": "TAR (abgeleitet von „tape archive“)",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Rohdaten und Workspace",
+    "Datenformate": "ASCII Text ist langfristig nutzbar, die spätere maschinelle Lesbarkeit ist jedoch unter Umständen aufwendig.",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Rohdaten und Workspace",
+    "Datenformate": "S-Plus (*.sdd) am ehesten als Text-Dateien speichern.",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "gelb",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Rohdaten und Workspace",
+    "Datenformate": "Matlab *.mat am ehesten in HDF5 Format speichern. Nichttriviale Matlab *.mat ASCII Files vermeiden, denn sie können mit load nicht gelesen werden (siehe Tabelle 2).",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "gelb",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Rohdaten und Workspace",
+    "Datenformate": "Network Common Data Format oder NetCDF (*.nc, *.cdf)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Rohdaten und Workspace",
+    "Datenformate": "Hierarchical Data Format (HDF5) (*.h5, *.hdf5, *.he5)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Rohdaten und Workspace",
+    "Datenformate": "Binäre Dateien wie veraltete Matlab Dateien *.mat (binär), R Dateien *.RData",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bibilographische Daten (Zitationsformate)",
+    "Datenformate": "allegro",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bibilographische Daten (Zitationsformate)",
+    "Datenformate": "CSL-JSON",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bibilographische Daten (Zitationsformate)",
+    "Datenformate": "BibJSON",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bibilographische Daten (Zitationsformate)",
+    "Datenformate": "BibTeX",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bibilographische Daten (Zitationsformate)",
+    "Datenformate": "Citation File Format (CFF)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Allgemeines Metadatenprofil für Bildungsressourcen (AMB)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Codex Metadata Model (Codex)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Common European Research Information Format (CERIF)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Cataloging Cultural Objects: A Guide to Describing Cultural Works and Their Images (CCO)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Categories for the Description of Works of Art (CDWA)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "CodeMeta",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Culture Graph Interchange Format (CGIF)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Data Package",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Data Resoure",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "DataCite",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "DNB Casual (dnbterms)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Document Availability Information API (DAIA)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "EN 15907",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Encoded Archival Description (EAD)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Endnote Tagged Format (ENW)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Europeana Data Model (EDM)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Exchangeable Image File Format (Exif)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Extensible Metadata Platform (XMP)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Functional Requirements for Bibliographic Records (FRBR)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Hayagriva YAML File Format (Hayagriva)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "International Standard Bibliographic Description (ISBD)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Journal Article Tag Suite (JATS)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Kerndatensatz Forschung (KDSF)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Knowledge Base And Related Tools (KBART)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Langzeitarchivierungsmetadaten für elektronische Ressourcen (LMER)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Learning Objects Metadata (LOM)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Lightweight Information Describing Objects (LIDO)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "DDB-LIDO",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Gemeinsamer Feldkatalog Graphischer Sammlungen",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "KENOM-LIDO",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "kuniweb-LIDO",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "MARC",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "CBS MARC 21 Format",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "JAPAN/MARC Format für bibliographische Daten",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "MARC 21 Format für bibliographische Daten",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "MARC 21 Format für Lokaldaten",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "MARC 21 LITE Bibliographic Format",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "UNIMARC Format für bibliographische Daten",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "UNIMARC Format für Lokaldaten",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Maschinelles Austauschformat für Bibliotheken (MAB)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Metadata Encoding & Transmission Standard (METS)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Metadata Object Description Schema (MODS)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "museumdat",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "ONline Information eXchange (ONIX)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "PICA-Format (PICA)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "CBS MARC 21 PICA+ format",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "K10plus Format",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "ZDB-Format",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Research Information System Format (RIS)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Schemas und Schemasprachen (Schemas)",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Metadata Vocabulary for Tabular Data",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "Spectrum",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "VZG Articleformat",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  }
+]
+        `;
+
+        // Die Funktion zum Laden der Daten wird nun angepasst, um den eingebetteten String zu verwenden.
+        function loadData() {
+            const tableBody = document.getElementById('format-table-body');
+            tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-gray-500">Lade Daten...</td></tr>`;
+            
+            try {
+                // Parsen des JSON-Strings in ein JavaScript-Objekt
+                const fileFormatsData = JSON.parse(fileFormatsJSONString);
+                generateTableRows(fileFormatsData);
+                setupFilters();
+            } catch (error) {
+                console.error('Fehler beim Parsen der eingebetteten JSON-Daten:', error);
+                tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-red-500">Fehler beim Laden der Daten: ${error.message}</td></tr>`;
+            }
+        }
+
+        // Stelle sicher, dass die Daten geladen werden, sobald das DOM bereit ist
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>
