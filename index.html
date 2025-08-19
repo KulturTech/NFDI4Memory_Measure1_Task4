@@ -42,15 +42,19 @@
 </head>
 <body class="bg-gray-100 p-4 sm:p-8">
 
-  <div class="container mx-auto max-w-7xl bg-white rounded-xl shadow-lg p-6 sm:p-8">
-    <!-- Flexbox-Klassen wurden hier hinzugefügt, um das Logo und den Titel zu zentrieren -->
-    <header class="flex flex-col items-center text-center mb-8">
-        <div class="logo mb-4">
-            <a href="https://4memory.de/ueber-4memory/task-areas/data-quality/">
-                <!-- Das Logo-Bild, das zentriert werden soll -->
-                <img alt="Logo NFDI4Memory" src="P:\\Projekt_NFDI4M\\03_Logos-Vorlagen-Bilder\\04_Logopaket-Styleguide\\RGB\\Logo_for_memory_RGB.svg" class="mx-auto h-32 w-auto">
-            </a>
-        </div>
+<div class="container mx-auto max-w-7xl bg-white rounded-xl shadow-lg p-6 sm:p-8">
+        <!-- Flexbox-Klassen wurden hier hinzugefügt, um das Logo und den Titel zu zentrieren -->
+        <header class="flex flex-col items-center text-center mb-8">
+            <div class="logo mb-4">
+                <a href="https://4memory.de/ueber-4memory/task-areas/data-quality/">
+                    <!-- Das Logo-Bild, das zentriert werden soll.
+                         Das Attribut `src` wurde auf einen relativen Pfad geändert.
+                         Sie müssen die Logodatei (z.B. Logo_for_memory_RGB.svg)
+                         in Ihr GitHub-Repository hochladen, idealerweise in einen Ordner namens `images`. -->
+                    <img alt="Logo NFDI4Memory" src="https://placehold.co/200x80/000000/FFFFFF/png?text=Logo+NFDI4Memory"
+                         onerror="this.onerror=null; this.src='images/Logo_for_memory_RGB.svg'"
+                         class="mx-auto h-32 w-auto">
+                </a>
         <div class="pageTitle">
             <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Interaktive Tafel gängiger Dateiformate (Langzeitarchivierung)</h1>
         </div>
@@ -1325,5 +1329,6 @@
 </body>
 
 </html>
+
 
 
