@@ -38,6 +38,9 @@
             transition: all 0.2s ease-in-out;
             cursor: pointer;
         }
+         .hidden-source {
+             display: none;
+         }
     </style>
 </head>
 <body class="bg-gray-100 p-4 sm:p-8">
@@ -86,6 +89,8 @@
                 </button>
                 <button data-category="data" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
                     Daten & Tabellen
+                <button id="toggleSources" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                  Quelle anzeigen/ausblenden
                 </button>
             </div>
             <div class="flex flex-wrap justify-center gap-2 mt-4 sm:mt-0">
@@ -178,81 +183,108 @@
             });
         }
 
-        // Logik für die Filterung der Tabellenzeilen
-        function setupFilters() {
-            let activeCategory = null;
-            let activeStatus = null;
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const categoryButtons = document.querySelectorAll('[data-category]');
-            const statusButtons = document.querySelectorAll('[data-status]');
-            const showAllButton = document.getElementById('showAll');
-            const tableBody = document.getElementById('format-table-body');
-            
-            // Hilfsfunktion zum Aktualisieren der Button-UI
-            function updateButtonState() {
-                filterButtons.forEach(btn => btn.classList.remove('active-filter'));
+function setupFilters() {
+    let activeCategory = null;
+    let activeStatus = null;
+    let sourcesVisible = true; // Neuer Zustand für die Sichtbarkeit der Quellen
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const categoryButtons = document.querySelectorAll('[data-category]');
+    const statusButtons = document.querySelectorAll('[data-status]');
+    const showAllButton = document.getElementById('showAll');
+    const toggleSourcesButton = document.getElementById('toggleSources'); // Den neuen Button referenzieren
+    const tableBody = document.getElementById('format-table-body');
 
-                if (activeCategory || activeStatus) {
-                    if (activeCategory) {
-                        const btn = document.querySelector(`.filter-btn[data-category="${activeCategory}"]`);
-                        if (btn) btn.classList.add('active-filter');
-                    }
-                    if (activeStatus) {
-                        const btn = document.querySelector(`.filter-btn[data-status="${activeStatus}"]`);
-                        if (btn) btn.classList.add('active-filter');
-                    }
-                } else {
-                    showAllButton.classList.add('active-filter');
-                }
+    // Hilfsfunktion zum Aktualisieren der Button-UI
+    function updateButtonState() {
+        filterButtons.forEach(btn => btn.classList.remove('active-filter'));
+        
+        if (activeCategory || activeStatus) {
+            if (activeCategory) {
+                const btn = document.querySelector(`.filter-btn[data-category="${activeCategory}"]`);
+                if (btn) btn.classList.add('active-filter');
             }
-
-            // Hilfsfunktion zum Anwenden der Filter auf die Tabelle
-            function applyFilters() {
-                tableBody.querySelectorAll('tr').forEach(row => {
-                    const rowCategory = row.dataset.category;
-                    const rowStatus = row.dataset.status;
-
-                    const categoryMatch = !activeCategory || rowCategory === activeCategory;
-                    const statusMatch = !activeStatus || rowStatus === activeStatus;
-
-                    if (categoryMatch && statusMatch) {
-                        row.classList.remove('hidden');
-                    } else {
-                        row.classList.add('hidden');
-                    }
-                });
+            if (activeStatus) {
+                const btn = document.querySelector(`.filter-btn[data-status="${activeStatus}"]`);
+                if (btn) btn.classList.add('active-filter');
             }
+        } else {
+            showAllButton.classList.add('active-filter');
+        }
 
-            // Event-Listener für Kategoriefilter
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    activeCategory = activeCategory === button.dataset.category ? null : button.dataset.category;
-                    updateButtonState();
-                    applyFilters();
-                });
-            });
+        // Optional: Den Zustand des neuen Buttons visuell darstellen
+        if (sourcesVisible) {
+            toggleSourcesButton.classList.add('active-filter'); // Oder eine andere Klasse
+        } else {
+            toggleSourcesButton.classList.remove('active-filter');
+        }
+    }
 
-            // Event-Listener für Statusfilter
-            statusButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    activeStatus = activeStatus === button.dataset.status ? null : button.dataset.status;
-                    updateButtonState();
-                    applyFilters();
-                });
-            });
+    // Hilfsfunktion zum Anwenden der Filter auf die Tabelle
+    function applyFilters() {
+        const tableHeaderSource = document.querySelector('th:nth-child(4)');
+        const tableSourceCells = document.querySelectorAll('td:nth-child(4)');
 
-            // Event-Listener für "Alle Formate"
-            showAllButton.addEventListener('click', () => {
-                activeCategory = null;
-                activeStatus = null;
-                updateButtonState();
-                applyFilters();
-            });
+        // Toggle-Logik für die Quelle
+        if (sourcesVisible) {
+            tableHeaderSource.classList.remove('hidden-source');
+            tableSourceCells.forEach(cell => cell.classList.remove('hidden-source'));
+        } else {
+            tableHeaderSource.classList.add('hidden-source');
+            tableSourceCells.forEach(cell => cell.classList.add('hidden-source'));
+        }
 
-            // Initialen Zustand setzen
+        tableBody.querySelectorAll('tr').forEach(row => {
+            const rowCategory = row.dataset.category;
+            const rowStatus = row.dataset.status;
+
+            const categoryMatch = !activeCategory || rowCategory === activeCategory;
+            const statusMatch = !activeStatus || rowStatus === activeStatus;
+
+            if (categoryMatch && statusMatch) {
+                row.classList.remove('hidden');
+            } else {
+                row.classList.add('hidden');
+            }
+        });
+    }
+
+    // Event-Listener für Kategoriefilter
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            activeCategory = activeCategory === button.dataset.category ? null : button.dataset.category;
             updateButtonState();
             applyFilters();
-        }
+        });
+    });
+
+    // Event-Listener für Statusfilter
+    statusButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            activeStatus = activeStatus === button.dataset.status ? null : button.dataset.status;
+            updateButtonState();
+            applyFilters();
+        });
+    });
+
+    // Event-Listener für "Alle Formate"
+    showAllButton.addEventListener('click', () => {
+        activeCategory = null;
+        activeStatus = null;
+        updateButtonState();
+        applyFilters();
+    });
+
+    // Event-Listener für den neuen Toggle-Button
+    toggleSourcesButton.addEventListener('click', () => {
+        sourcesVisible = !sourcesVisible; // Zustand umkehren
+        updateButtonState();
+        applyFilters();
+    });
+
+    // Initialen Zustand setzen
+    updateButtonState();
+    applyFilters();
+}
         
          // JSON-Daten als String einbetten
          const fileFormatsJSONString = `
@@ -1330,4 +1362,5 @@
         document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
+
 </html>
