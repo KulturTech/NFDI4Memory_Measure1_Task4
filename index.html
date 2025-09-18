@@ -287,28 +287,28 @@ function setupFilters() {
 }
         
          // JSON-Daten als String einbetten
-        const fileFormatsJSONString = `
+const fileFormatsJSONString = `
 [
   {
     "Dateiart": "Text",
-    "Datenformate": "Extensible Markup Language (XML) 1.1",
-    "Extension": ".xml",
+    "Datenformate": "XML 1.1 (Extensible Markup Language)",
+    "Bemerkungen": "inklusive XSD/XSL/XHTML etc.; wobei Schema und Buchstabenkodierung explizit im File angegeben werden sollen",
     "Quellen zur Ampel": "ETH Zürich (2025): https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "JavaScript Object Notation (JSON)",
-    "Extension": ".json",
+    "Datenformate": "JSON (JavaScript Object Notation)",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "Comma-Separated Values (CSV)",
-    "Extension": ".csv",
+    "Datenformate": "CSV (Comma-Separated Values)",
+    "Bemerkungen": "Typ \"Tabelle\"",
     "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "orange",
     "Kategorie": "text"
@@ -316,7 +316,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "Textdatei (TXT) (Codierung UTF-8)",
-    "Extension": ".txt",
+    "Bemerkungen": "inklusive CSV (mit UTF-8)",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -324,7 +324,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "Portable Document Format A (PDF A)",
-    "Extension": ".pdf",
+    "Bemerkungen": "z. B. PDF/A-1, PDF/A-2, PDF/A-3 (wobei PDF/A-2 als optimal gilt)",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -332,7 +332,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "OOXML (Office Open Extensible Markup Language)",
-    "Extension": ".docx, .xlsx",
+    "Bemerkungen": "z.B. docx, xlsx, pptx",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "text"
@@ -340,7 +340,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "PDF/A-3 (*.pdf)",
-    "Extension": ".pdf",
+    "Bemerkungen": "inkl. des Original-Datensatzes",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "text"
@@ -348,7 +348,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "Rich Text Format (*.rtf)",
-    "Extension": ".rtf",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "text"
@@ -356,15 +356,15 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "XML mit DTD-Datei oder XML-Schema, JSON, HTML",
-    "Extension": ".xml, .json, .html",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "HTML und XML (Die ASCII Texte sind langfristig lesbar; externe Links möglichst vermeiden)",
-    "Extension": ".html, .xml",
+    "Datenformate": "HTML und XML",
+    "Bemerkungen": "Die ASCII Texte sind langfristig lesbar; externe Links möglichst vermeiden",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -372,7 +372,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "OpenDocument Formate (*.odm, *.odt, *.odg, *.odc, *.odf)",
-    "Extension": ".odm, .odt, .odg, .odc, .odf",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -380,7 +380,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "JavaScript Object Notation for Linked Data (JSON LD)",
-    "Extension": ".jsonld",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -388,7 +388,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "Resource Description Framework in Attributes (RDFa)",
-    "Extension": "N/A",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -396,15 +396,15 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "Word *.docx",
-    "Extension": ".docx",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "LaTeX und TeX (Die ASCII Texte sind langfristig lesbar; allenfalls benutzte lizenzfreie Softwarepakete mit Spezialfonts und resultierendes PDF sollten mitgeliefert werden)",
-    "Extension": ".tex",
+    "Datenformate": "LaTeX und TeX",
+    "Bemerkungen": "Die ASCII Texte sind langfristig lesbar; allenfalls benutzte lizenzfreie Softwarepakete mit Spezialfonts und resultierendes PDF sollten mitgeliefert werden",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -412,7 +412,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "Markdown (*.md)",
-    "Extension": ".md",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -420,7 +420,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "Word *.doc",
-    "Extension": ".doc",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "text"
@@ -428,7 +428,7 @@ function setupFilters() {
   {
     "Dateiart": "Text",
     "Datenformate": "PowerPoint *.ppt",
-    "Extension": ".ppt",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "text"
@@ -436,7 +436,7 @@ function setupFilters() {
   {
     "Dateiart": "Unformatierter Text",
     "Datenformate": "Unformatierter Text (*.txt, *.asc, *.c, *.h, *.cpp, *.m, *.py, *.r usw.)",
-    "Extension": ".txt, .asc, .c, .h, .cpp, .m, .py, .r",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -444,7 +444,7 @@ function setupFilters() {
   {
     "Dateiart": "Unformatierter Text",
     "Datenformate": "Markdown (*.md)",
-    "Extension": ".md",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -452,7 +452,7 @@ function setupFilters() {
   {
     "Dateiart": "Musik",
     "Datenformate": "Music Encoding Initiative (MEI)",
-    "Extension": ".mei",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -460,7 +460,7 @@ function setupFilters() {
   {
     "Dateiart": "Musik",
     "Datenformate": "MusicXML",
-    "Extension": ".musicxml",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -468,7 +468,7 @@ function setupFilters() {
   {
     "Dateiart": "Musik",
     "Datenformate": "Parsons Code",
-    "Extension": "N/A",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -476,7 +476,7 @@ function setupFilters() {
   {
     "Dateiart": "Musik",
     "Datenformate": "Portable Document Format A (PDF A)",
-    "Extension": ".pdf",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -484,7 +484,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Rastergrafiken)",
     "Datenformate": "Master: baseline Tagged Image File Format (TIFF), unkomprimiert; TIFF mit Lempel-Ziv-Welch-Komprimierung (TIFF-LZW)",
-    "Extension": ".tif, .tiff",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
     "Kategorie": "image"
@@ -492,7 +492,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Rastergrafiken)",
     "Datenformate": "Joint Photographic Experts Group (JPEG 1 und JPEG 2000), verlustfrei komprimiert, lizenzfreie Bereiche",
-    "Extension": ".jpg, .jpeg, .jp2",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
     "Kategorie": "image"
@@ -500,15 +500,15 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Rastergrafiken)",
     "Datenformate": "PDF-Format, Typ PDF/A-2",
-    "Extension": ".pdf",
+    "Bemerkungen": "wenn keine Weiterverarbeitung von Text oder Bildteilen der Datei vorgesehen ist",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "Präsentationsformate (Derivate): JPEG, JPEG 2000, Portable Network Graphics (PNG)",
-    "Extension": ".jpg, .jpeg, .jp2, .png",
+    "Datenformate": "Präsentationsformate: JPEG, JPEG 2000, Portable Network Graphics (PNG)",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "image"
@@ -516,7 +516,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Rastergrafiken)",
     "Datenformate": "Rohdaten: Digital Negative (DNG)",
-    "Extension": ".dng",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "image"
@@ -524,7 +524,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Rastergrafiken)",
     "Datenformate": "Photoshop (*.psd)",
-    "Extension": ".psd",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "image"
@@ -532,7 +532,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Scalable Vector Graphics (SVG)",
-    "Extension": ".svg",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "image"
@@ -540,7 +540,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "AutoCAD Drawing (*.dwg)",
-    "Extension": ".dwg",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "image"
@@ -548,7 +548,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Drawing Interchange Format, AutoCAD (*.dxf)",
-    "Extension": ".dxf",
+    "Bemerkungen": "Nur falls DWG nicht vorhanden",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "gelb",
     "Kategorie": "image"
@@ -556,7 +556,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Extensible 3D, X3D (*.x3d, *.x3dv, *.x3db)",
-    "Extension": ".x3d, .x3dv, .x3db",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "image"
@@ -564,7 +564,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Encapsulated Postscript (*.eps)",
-    "Extension": ".eps",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "image"
@@ -572,7 +572,7 @@ function setupFilters() {
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Grafik InDesign (*.indd), Illustrator (*.ait)",
-    "Extension": ".indd, .ait",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "image"
@@ -580,7 +580,7 @@ function setupFilters() {
   {
     "Dateiart": "Audio",
     "Datenformate": "Archivformat: Waveform Audio File-Format (WAV) in Verbindung mit Pulse Code Modulation (PCM); Free Lossless Audio Codec (FLAC)",
-    "Extension": ".wav, .flac",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -588,7 +588,7 @@ function setupFilters() {
   {
     "Dateiart": "Audio",
     "Datenformate": "Advanced Audio Coding (*.mp4)",
-    "Extension": ".m4a, .mp4",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -596,7 +596,7 @@ function setupFilters() {
   {
     "Dateiart": "Audio",
     "Datenformate": "MP3 (*.mp3)",
-    "Extension": ".mp3",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "multimedia"
@@ -604,23 +604,23 @@ function setupFilters() {
   {
     "Dateiart": "Audio",
     "Datenformate": "Präsentationsformat: MPEG-2 Audiolayer III (MP3)",
-    "Extension": ".mp3",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "Archivformate:",
-    "Extension": "N/A",
-    "Quellen zur Ampel": "",
+    "Datenformate": "Archivformate: ",
+    "Bemerkungen": "nestor Handreichung zu Bewegtbild- und Audiodaten",
+    "Quellen zur Ampel": "nestor AG Media, https://nestor.sub.uni-goettingen.de/handreichungen/nestor_handreichung_media.pdf",
     "Ampel": "unbekannt",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Codec FFV1 / Container MKV",
-    "Extension": ".mkv",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -628,7 +628,7 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "TIFF mit FFV1 in Matroshka codiert",
-    "Extension": ".mkv",
+    "Bemerkungen": "als Standard empfohlen",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -636,7 +636,7 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Moving Picture Experts Group Standard MPEG-4",
-    "Extension": ".mp4",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -644,7 +644,7 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Präsentationsformat: MP4 (MPEG-4, part 14)",
-    "Extension": ".mp4",
+    "Bemerkungen": "mit Videocodierung H.264 und Audiocodierung AAC",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -652,7 +652,7 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "MPEG-2 (*.mpg,*.mpeg)",
-    "Extension": ".mpg, .mpeg",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "multimedia"
@@ -660,7 +660,7 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "QuickTime Movie (*.mov)",
-    "Extension": ".mov",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "multimedia"
@@ -668,7 +668,7 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Audio Video Interleave (*.avi)",
-    "Extension": ".avi",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "multimedia"
@@ -676,7 +676,7 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Windows Media Video (*.wmv)",
-    "Extension": ".wmv",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "multimedia"
@@ -684,15 +684,15 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "weitere Empfehlungen der nestor AG Media",
-    "Extension": "N/A",
-    "Quellen zur Ampel": "",
+    "Bemerkungen": "https://nestor.sub.uni-goettingen.de/nestor-ag-media.html",
+    "Quellen zur Ampel": "nestor AG Media",
     "Ampel": "unbekannt",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Moving Picture Experts Group Motion JPEG 2000 (MJPEG2000)",
-    "Extension": ".mjpg, .mjpeg",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -700,7 +700,7 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Digital Picture Exchange (DPX), SMPTE 268M-2003, v 2.0",
-    "Extension": ".dpx",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -708,15 +708,15 @@ function setupFilters() {
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Material Exchange Format (MXF), SMPTE 377M",
-    "Extension": ".mxf",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "3D",
-    "Datenformate": "Graphics Language Transmission Format (glTF)",
-    "Extension": ".gltf",
+    "Datenformate": "glTF (Graphics Language Transmission Format)",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -724,7 +724,7 @@ function setupFilters() {
   {
     "Dateiart": "3D",
     "Datenformate": "Wavefront Object (OBJ)",
-    "Extension": ".obj",
+    "Bemerkungen": "empfohlen mit MTL und Texturen",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -732,7 +732,7 @@ function setupFilters() {
   {
     "Dateiart": "3D",
     "Datenformate": "Extensible 3D (X3D)",
-    "Extension": ".x3d",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -740,7 +740,7 @@ function setupFilters() {
   {
     "Dateiart": "3D",
     "Datenformate": "Präsentationsformat: glTF, X3D, OBJ",
-    "Extension": ".gltf, .x3d, .obj",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -748,23 +748,23 @@ function setupFilters() {
   {
     "Dateiart": "3D",
     "Datenformate": "COLLAborative Design Activity (COLLADA)",
-    "Extension": ".dae",
-    "Quellen zur Ampel": "",
+    "Bemerkungen": "",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "rot",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Tabellen",
-    "Datenformate": "Extensible Markup Language (XML) 1.1, mit XML Schema Definition (XSD)",
-    "Extension": ".xml",
+    "Datenformate": "XML (Extensible Markup Language) 1.1, mit XML Schema Definition (XSD)",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "data"
   },
   {
     "Dateiart": "Tabellen",
-    "Datenformate": "Comma-Separated Values (CSV)",
-    "Extension": ".csv",
+    "Datenformate": "CSV (Comma-Separated Values)",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -772,7 +772,7 @@ function setupFilters() {
   {
     "Dateiart": "Tabellen",
     "Datenformate": "Excel *.xlsx (Containerformat)",
-    "Extension": ".xlsx",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "data"
@@ -780,7 +780,7 @@ function setupFilters() {
   {
     "Dateiart": "Tabellen",
     "Datenformate": "OpenDocument Formate (*.odm, *.odt, *.odg, *.odc, *.odf)",
-    "Extension": ".odm, .odt, .odg, .odc, .odf",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -788,15 +788,15 @@ function setupFilters() {
   {
     "Dateiart": "Tabellen",
     "Datenformate": "Excel *.xls, *.xlsb (binäre Formate)",
-    "Extension": ".xls, .xlsb",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "data"
   },
   {
     "Dateiart": "Datenbanken",
-    "Datenformate": "Software Independent Archival of Relational Databases (SIARD)",
-    "Extension": ".siard",
+    "Datenformate": "SIARD (Software Independent Archival of Relational Databases)",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -804,7 +804,7 @@ function setupFilters() {
   {
     "Dateiart": "Datenbanken",
     "Datenformate": "Structured Query Language (SQL)",
-    "Extension": ".sql",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -812,7 +812,7 @@ function setupFilters() {
   {
     "Dateiart": "Datenbanken",
     "Datenformate": "MS Access 2010/2016",
-    "Extension": ".accdb",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "rot",
     "Kategorie": "data"
@@ -820,15 +820,15 @@ function setupFilters() {
   {
     "Dateiart": "Datenbanken",
     "Datenformate": "Export und externe Speicherung der Datenbankinhalte empfohlen, z. B. als XML, CSV, JSON mit Entitäten-Relationen-Diagramm (ERD)",
-    "Extension": "N/A",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
   },
   {
     "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "Vektordaten: Environmental Systems Research Institute ESRI Shapefile",
-    "Extension": ".shp",
+    "Datenformate": "Vektordaten: ESRI Shapefile",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -836,7 +836,7 @@ function setupFilters() {
   {
     "Dateiart": "Geoinformationssysteme (GIS)",
     "Datenformate": "Vektordaten als ESRI ArcGIS/ARCView ShapeFile",
-    "Extension": ".shp",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -844,7 +844,7 @@ function setupFilters() {
   {
     "Dateiart": "Geoinformationssysteme (GIS)",
     "Datenformate": "OGC GeoPackage (OpenSource)",
-    "Extension": ".gpkg",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -852,7 +852,7 @@ function setupFilters() {
   {
     "Dateiart": "Geoinformationssysteme (GIS)",
     "Datenformate": "Rasterbilddaten als Geo-TIFF",
-    "Extension": ".tif",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -860,7 +860,7 @@ function setupFilters() {
   {
     "Dateiart": "Geoinformationssysteme (GIS)",
     "Datenformate": "ESRI World-File (Rastergrafik)",
-    "Extension": ".tfw",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -868,7 +868,7 @@ function setupFilters() {
   {
     "Dateiart": "Geoinformationssysteme (GIS)",
     "Datenformate": "Keyhole Mark-Up Language (kml)",
-    "Extension": ".kml",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "orange",
     "Kategorie": "data"
@@ -876,7 +876,7 @@ function setupFilters() {
   {
     "Dateiart": "Geoinformationssysteme (GIS)",
     "Datenformate": "Geography Markup Language (gml)",
-    "Extension": ".gml",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -884,7 +884,7 @@ function setupFilters() {
   {
     "Dateiart": "Geoinformationssysteme (GIS)",
     "Datenformate": "Längen- und Breitenangaben (alternativ)",
-    "Extension": "N/A",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -892,39 +892,39 @@ function setupFilters() {
   {
     "Dateiart": "Geoinformationssysteme (GIS)",
     "Datenformate": "Rasterdaten: Open Geospatial Consortium GeoTIFF",
-    "Extension": ".tif",
-    "Quellen zur Ampel": "",
+    "Bemerkungen": "",
+    "Quellen zur Ampel": "https://www.iso.org/standard/32575.html",
     "Ampel": "grün",
     "Kategorie": "data"
   },
   {
     "Dateiart": "Webseiten",
-    "Datenformate": "Hypertext Markup Language (HTML5)",
-    "Extension": ".html, .htm",
+    "Datenformate": "HTML5 (Hypertext Markup Language)",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "data"
   },
   {
     "Dateiart": "Webseiten",
-    "Datenformate": "Extensible Hypertext Markup Language (XHTML)",
-    "Extension": ".xhtml",
+    "Datenformate": "XHTML (Extensible Hypertext Markup Language)",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "data"
   },
   {
     "Dateiart": "Webseiten",
-    "Datenformate": "Resource Description Framework in Attributes (RDFa) für das Einbetten von RDF-Statements in HTML und XHTML",
-    "Extension": "N/A",
-    "Quellen zur Ampel": "",
+    "Datenformate": "RDFa (Resource Description Framework in Attributes)",
+    "Bemerkungen": "für das Einbetten von RDF-Statements in HTML und XHTML",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "data"
   },
   {
     "Dateiart": "Statistik",
     "Datenformate": "R (Sprache und Umgebung für statistische Berechnungen und Grafiken)",
-    "Extension": ".r",
+    "Bemerkungen": "Empfohlen als Skript oder Quellcode in Textdateien",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "orange",
     "Kategorie": "data"
@@ -932,7 +932,7 @@ function setupFilters() {
   {
     "Dateiart": "Webarchiv",
     "Datenformate": "WARC-Format (Web Archive Format)",
-    "Extension": ".warc",
+    "Bemerkungen": "mit zugehörigen Metadaten",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -940,7 +940,7 @@ function setupFilters() {
   {
     "Dateiart": "Webarchiv",
     "Datenformate": "HTML + CSS (Hyper Text Markup Language + Cascading Style Sheets)",
-    "Extension": ".html, .css",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -948,7 +948,7 @@ function setupFilters() {
   {
     "Dateiart": "Bagit",
     "Datenformate": "Bagit (File Packaging Format)",
-    "Extension": "N/A",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -956,7 +956,7 @@ function setupFilters() {
   {
     "Dateiart": "Bagit",
     "Datenformate": "ZIP-Format (PKZip)",
-    "Extension": ".zip",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -964,7 +964,7 @@ function setupFilters() {
   {
     "Dateiart": "Bagit",
     "Datenformate": "GZIP (GNU Zip)",
-    "Extension": ".gz",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -972,7 +972,7 @@ function setupFilters() {
   {
     "Dateiart": "Bagit",
     "Datenformate": "TAR (abgeleitet von „tape archive“)",
-    "Extension": ".tar",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -980,7 +980,7 @@ function setupFilters() {
   {
     "Dateiart": "Rohdaten und Workspace",
     "Datenformate": "ASCII Text ist langfristig nutzbar, die spätere maschinelle Lesbarkeit ist jedoch unter Umständen aufwendig.",
-    "Extension": ".asc",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -988,7 +988,7 @@ function setupFilters() {
   {
     "Dateiart": "Rohdaten und Workspace",
     "Datenformate": "S-Plus (*.sdd) am ehesten als Text-Dateien speichern.",
-    "Extension": ".sdd",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "data"
@@ -996,7 +996,7 @@ function setupFilters() {
   {
     "Dateiart": "Rohdaten und Workspace",
     "Datenformate": "Matlab *.mat am ehesten in HDF5 Format speichern. Nichttriviale Matlab *.mat ASCII Files vermeiden, denn sie können mit load nicht gelesen werden (siehe Tabelle 2).",
-    "Extension": ".mat",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "data"
@@ -1004,7 +1004,7 @@ function setupFilters() {
   {
     "Dateiart": "Rohdaten und Workspace",
     "Datenformate": "Network Common Data Format oder NetCDF (*.nc, *.cdf)",
-    "Extension": ".nc, .cdf",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -1012,7 +1012,7 @@ function setupFilters() {
   {
     "Dateiart": "Rohdaten und Workspace",
     "Datenformate": "Hierarchical Data Format (HDF5) (*.h5, *.hdf5, *.he5)",
-    "Extension": ".h5, .hdf5, .he5",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -1020,7 +1020,7 @@ function setupFilters() {
   {
     "Dateiart": "Rohdaten und Workspace",
     "Datenformate": "Binäre Dateien wie veraltete Matlab Dateien *.mat (binär), R Dateien *.RData",
-    "Extension": ".mat, .rdata",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "data"
@@ -1028,7 +1028,7 @@ function setupFilters() {
   {
     "Dateiart": "Bibilographische Daten (Zitationsformate)",
     "Datenformate": "allegro",
-    "Extension": "N/A",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -1036,7 +1036,7 @@ function setupFilters() {
   {
     "Dateiart": "Bibilographische Daten (Zitationsformate)",
     "Datenformate": "CSL-JSON",
-    "Extension": ".json",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -1044,7 +1044,7 @@ function setupFilters() {
   {
     "Dateiart": "Bibilographische Daten (Zitationsformate)",
     "Datenformate": "BibJSON",
-    "Extension": ".json",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -1052,7 +1052,7 @@ function setupFilters() {
   {
     "Dateiart": "Bibilographische Daten (Zitationsformate)",
     "Datenformate": "BibTeX",
-    "Extension": ".bib",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -1060,7 +1060,7 @@ function setupFilters() {
   {
     "Dateiart": "Bibilographische Daten (Zitationsformate)",
     "Datenformate": "Citation File Format (CFF)",
-    "Extension": ".cff",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -1068,7 +1068,7 @@ function setupFilters() {
   {
     "Dateiart": "Metadatenformate",
     "Datenformate": "VZG Articleformat",
-    "Extension": "N/A",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
     "Ampel": "grün",
     "Kategorie": "data"
@@ -1098,6 +1098,7 @@ function setupFilters() {
 </body>
 
 </html>
+
 
 
 
