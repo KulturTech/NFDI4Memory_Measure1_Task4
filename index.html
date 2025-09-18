@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interaktive Tafel gängiger Dateiformate</title>
-    <!-- Verwende Tailwind CSS für ein sauberes, responsives Design -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,22 +37,14 @@
             transition: all 0.2s ease-in-out;
             cursor: pointer;
         }
-         .hidden-source {
-             display: none;
-         }
     </style>
 </head>
 <body class="bg-gray-100 p-4 sm:p-8">
 
     <div class="container mx-auto max-w-7xl bg-white rounded-xl shadow-lg p-6 sm:p-8">
-        <!-- Flexbox-Klassen wurden hier hinzugefügt, um das Logo und den Titel zu zentrieren -->
         <header class="flex flex-col items-center text-center mb-8">
             <div class="logo mb-4">
                 <a href="https://4memory.de/ueber-4memory/task-areas/data-quality/">
-                    <!-- Das Logo-Bild, das zentriert werden soll.
-                         Das Attribut `src` wurde auf einen relativen Pfad geändert.
-                         Sie müssen die Logodatei (z.B. Logo_for_memory_RGB.svg)
-                         in Ihr GitHub-Repository hochladen, idealerweise in einen Ordner namens `images`. -->
                     <img alt="Logo NFDI4Memory" src="images/Logo_for_memory_RGB.svg"
                          onerror="this.onerror=null; this.src='images/Logo_for_memory_RGB.svg'"
                          class="mx-auto h-32 w-auto">
@@ -72,7 +63,6 @@
             </ul>
             <h2 class="text-1xl sm:text-3xl font-bold text-gray-800 mt-8">Filteroptionen</h2>
         </header>
-        <!-- Filter-Buttons -->
         <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
             <div class="flex flex-wrap justify-center gap-2">
                 <button id="showAll" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
@@ -89,8 +79,6 @@
                 </button>
                 <button data-category="data" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
                     Daten & Tabellen
-                <button id="toggleSources" class="filter-btn text-white bg-gray-600 hover:bg-gray-700 font-medium py-2 px-4 rounded-full shadow-md transition-colors duration-200">
-                  Quelle anzeigen/ausblenden
                 </button>
             </div>
             <div class="flex flex-wrap justify-center gap-2 mt-4 sm:mt-0">
@@ -105,8 +93,12 @@
                 </button>
             </div>
         </div>
+        <div class="flex justify-end mb-4">
+            <button id="toggleSourcesButton" class="text-gray-500 hover:text-gray-700 font-medium text-sm py-2 px-4 rounded-full border border-gray-300">
+                Quellen ein-/ausblenden
+            </button>
+        </div>
 
-        <!-- Die interaktive Tabelle -->
         <div class="overflow-x-auto rounded-lg shadow-md mb-8">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -114,7 +106,7 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dateiart</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Datenformate</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ampelstatus</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quelle(n)</th>
+                        <th id="sourcesHeader" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quelle(n)</th>
                     </tr>
                 </thead>
                 <tbody id="format-table-body" class="bg-white divide-y divide-gray-200">
@@ -138,6 +130,9 @@
                 default: return 'Unbekannt';
             }
         }
+
+        // Variable, um den Status der Quellenspalte zu verfolgen.
+        let isSourcesVisible = true;
 
         // Funktion zum dynamischen Erstellen der Tabellenzeilen aus den Daten.
         function generateTableRows(data) {
@@ -164,6 +159,9 @@
                 row.setAttribute('data-category', category);
                 row.setAttribute('data-status', status);
                 
+                // Füge die Klasse 'hidden' zur Quellen-Zelle hinzu, wenn die Spalte ausgeblendet werden soll.
+                const sourcesClass = isSourcesVisible ? '' : 'hidden';
+
                 row.innerHTML = `
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item['Dateiart'] || ''}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item['Datenformate'] || ''}</td>
@@ -171,144 +169,132 @@
                         <span class="flex items-center">
                             <span class="w-2.5 h-2.5 rounded-full mr-2
                                 ${status === 'grün' ? 'bg-green-500' : ''}
-                                ${status === 'orange' ? 'bg-amber-500' : ''}
+                                ${status === 'gelb' ? 'bg-orange-500' : ''}
                                 ${status === 'rot' ? 'bg-red-500' : ''}">
                             </span>
                             ${getStatusText(status)}
                         </span>
                     </td>
-                    <td class="px-6 py-4 text-sm text-gray-500">${item['Quellen zur Ampel'] || ''}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500 ${sourcesClass}">${item['Quellen zur Ampel'] || ''}</td>
                 `;
                 tableBody.appendChild(row);
             });
         }
 
-function setupFilters() {
-    let activeCategory = null;
-    let activeStatus = null;
-    let sourcesVisible = true; // Neuer Zustand für die Sichtbarkeit der Quellen
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const categoryButtons = document.querySelectorAll('[data-category]');
-    const statusButtons = document.querySelectorAll('[data-status]');
-    const showAllButton = document.getElementById('showAll');
-    const toggleSourcesButton = document.getElementById('toggleSources'); // Den neuen Button referenzieren
-    const tableBody = document.getElementById('format-table-body');
+        // Logik für die Filterung der Tabellenzeilen
+        function setupFilters() {
+            let activeCategory = null;
+            let activeStatus = null;
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const categoryButtons = document.querySelectorAll('[data-category]');
+            const statusButtons = document.querySelectorAll('[data-status]');
+            const showAllButton = document.getElementById('showAll');
+            const tableBody = document.getElementById('format-table-body');
+            
+            // Hilfsfunktion zum Aktualisieren der Button-UI
+            function updateButtonState() {
+                filterButtons.forEach(btn => btn.classList.remove('active-filter'));
 
-    // Hilfsfunktion zum Aktualisieren der Button-UI
-    function updateButtonState() {
-        filterButtons.forEach(btn => btn.classList.remove('active-filter'));
-        
-        if (activeCategory || activeStatus) {
-            if (activeCategory) {
-                const btn = document.querySelector(`.filter-btn[data-category="${activeCategory}"]`);
-                if (btn) btn.classList.add('active-filter');
+                if (activeCategory || activeStatus) {
+                    if (activeCategory) {
+                        const btn = document.querySelector(`.filter-btn[data-category="${activeCategory}"]`);
+                        if (btn) btn.classList.add('active-filter');
+                    }
+                    if (activeStatus) {
+                        const btn = document.querySelector(`.filter-btn[data-status="${activeStatus}"]`);
+                        if (btn) btn.classList.add('active-filter');
+                    }
+                } else {
+                    showAllButton.classList.add('active-filter');
+                }
             }
-            if (activeStatus) {
-                const btn = document.querySelector(`.filter-btn[data-status="${activeStatus}"]`);
-                if (btn) btn.classList.add('active-filter');
+
+            // Hilfsfunktion zum Anwenden der Filter auf die Tabelle
+            function applyFilters() {
+                tableBody.querySelectorAll('tr').forEach(row => {
+                    const rowCategory = row.dataset.category;
+                    const rowStatus = row.dataset.status;
+
+                    const categoryMatch = !activeCategory || rowCategory === activeCategory;
+                    const statusMatch = !activeStatus || rowStatus === activeStatus;
+
+                    if (categoryMatch && statusMatch) {
+                        row.classList.remove('hidden');
+                    } else {
+                        row.classList.add('hidden');
+                    }
+                });
             }
-        } else {
-            showAllButton.classList.add('active-filter');
+
+            // Event-Listener für Kategoriefilter
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    activeCategory = activeCategory === button.dataset.category ? null : button.dataset.category;
+                    updateButtonState();
+                    applyFilters();
+                });
+            });
+
+            // Event-Listener für Statusfilter
+            statusButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    activeStatus = activeStatus === button.dataset.status ? null : button.dataset.status;
+                    updateButtonState();
+                    applyFilters();
+                });
+            });
+
+            // Event-Listener für "Alle Formate"
+            showAllButton.addEventListener('click', () => {
+                activeCategory = null;
+                activeStatus = null;
+                updateButtonState();
+                applyFilters();
+            });
+
+            // Initialen Zustand setzen
+            updateButtonState();
+            applyFilters();
         }
 
-        // Optional: Den Zustand des neuen Buttons visuell darstellen
-        if (sourcesVisible) {
-            toggleSourcesButton.classList.add('active-filter'); // Oder eine andere Klasse
-        } else {
-            toggleSourcesButton.classList.remove('active-filter');
-        }
-    }
+        // Funktion zum Ein-/Ausblenden der Quellenspalte
+        function toggleSourcesColumn() {
+            const sourcesHeader = document.getElementById('sourcesHeader');
+            const sourcesCells = document.querySelectorAll('#format-table-body td:nth-child(4)');
 
-    // Hilfsfunktion zum Anwenden der Filter auf die Tabelle
-    function applyFilters() {
-        const tableHeaderSource = document.querySelector('th:nth-child(4)');
-        const tableSourceCells = document.querySelectorAll('td:nth-child(4)');
-
-        // Toggle-Logik für die Quelle
-        if (sourcesVisible) {
-            tableHeaderSource.classList.remove('hidden-source');
-            tableSourceCells.forEach(cell => cell.classList.remove('hidden-source'));
-        } else {
-            tableHeaderSource.classList.add('hidden-source');
-            tableSourceCells.forEach(cell => cell.classList.add('hidden-source'));
-        }
-
-        tableBody.querySelectorAll('tr').forEach(row => {
-            const rowCategory = row.dataset.category;
-            const rowStatus = row.dataset.status;
-
-            const categoryMatch = !activeCategory || rowCategory === activeCategory;
-            const statusMatch = !activeStatus || rowStatus === activeStatus;
-
-            if (categoryMatch && statusMatch) {
-                row.classList.remove('hidden');
+            if (isSourcesVisible) {
+                sourcesHeader.classList.add('hidden');
+                sourcesCells.forEach(cell => cell.classList.add('hidden'));
             } else {
-                row.classList.add('hidden');
+                sourcesHeader.classList.remove('hidden');
+                sourcesCells.forEach(cell => cell.classList.remove('hidden'));
             }
-        });
-    }
+            isSourcesVisible = !isSourcesVisible;
+        }
 
-    // Event-Listener für Kategoriefilter
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            activeCategory = activeCategory === button.dataset.category ? null : button.dataset.category;
-            updateButtonState();
-            applyFilters();
-        });
-    });
+        // Event-Listener für den neuen "Quellen ein-/ausblenden"-Button
+        document.getElementById('toggleSourcesButton').addEventListener('click', toggleSourcesColumn);
 
-    // Event-Listener für Statusfilter
-    statusButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            activeStatus = activeStatus === button.dataset.status ? null : button.dataset.status;
-            updateButtonState();
-            applyFilters();
-        });
-    });
-
-    // Event-Listener für "Alle Formate"
-    showAllButton.addEventListener('click', () => {
-        activeCategory = null;
-        activeStatus = null;
-        updateButtonState();
-        applyFilters();
-    });
-
-    // Event-Listener für den neuen Toggle-Button
-    toggleSourcesButton.addEventListener('click', () => {
-        sourcesVisible = !sourcesVisible; // Zustand umkehren
-        updateButtonState();
-        applyFilters();
-    });
-
-    // Initialen Zustand setzen
-    updateButtonState();
-    applyFilters();
-}
-        
          // JSON-Daten als String einbetten
-const fileFormatsJSONString = `
+         const fileFormatsJSONString = `
 [
   {
     "Dateiart": "Text",
-    "Datenformate": "XML 1.1 (Extensible Markup Language)",
-    "Bemerkungen": "inklusive XSD/XSL/XHTML etc.; wobei Schema und Buchstabenkodierung explizit im File angegeben werden sollen",
-    "Quellen zur Ampel": "ETH Zürich (2025): https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate, NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Datenformate": "Extensible Markup Language (XML) 1.1",
+    "Quellen zur Ampel": "ETH Zürich (2025): https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "JSON (JavaScript Object Notation)",
-    "Bemerkungen": "",
+    "Datenformate": "JavaScript Object Notation (JSON)",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "CSV (Comma-Separated Values)",
-    "Bemerkungen": "Typ \"Tabelle\"",
+    "Datenformate": "Comma-Separated Values (CSV)",
     "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "orange",
     "Kategorie": "text"
@@ -316,7 +302,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "Textdatei (TXT) (Codierung UTF-8)",
-    "Bemerkungen": "inklusive CSV (mit UTF-8)",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -324,7 +309,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "Portable Document Format A (PDF A)",
-    "Bemerkungen": "HI: Priorisiertes Datenformat für Langzeitarchivierung",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -332,7 +316,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "OOXML (Office Open Extensible Markup Language)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "text"
@@ -340,7 +323,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "PDF/A-3 (*.pdf)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "text"
@@ -348,7 +330,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "Rich Text Format (*.rtf)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "text"
@@ -356,15 +337,13 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "XML mit DTD-Datei oder XML-Schema, JSON, HTML",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "HTML und XML",
-    "Bemerkungen": "Die ASCII Texte sind langfristig lesbar; externe Links möglichst vermeiden",
+    "Datenformate": "HTML und XML (Die ASCII Texte sind langfristig lesbar; externe Links möglichst vermeiden)",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -372,7 +351,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "OpenDocument Formate (*.odm, *.odt, *.odg, *.odc, *.odf)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -380,7 +358,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "JavaScript Object Notation for Linked Data (JSON LD)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -388,23 +365,20 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "Resource Description Framework in Attributes (RDFa)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "Word (*.docx)",
-    "Bemerkungen": "ETH Zürich (2025):Bedingt geeignet, nicht akzeptiert für Publikationen, akzeptiert für Supplementary Materials",
+    "Datenformate": "Word *.docx",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "LaTeX und TeX",
-    "Bemerkungen": "Die ASCII Texte sind langfristig lesbar; allenfalls benutzte lizenzfreie Softwarepakete mit Spezialfonts und resultierendes PDF sollten mitgeliefert werden",
+    "Datenformate": "LaTeX und TeX (Die ASCII Texte sind langfristig lesbar; allenfalls benutzte lizenzfreie Softwarepakete mit Spezialfonts und resultierendes PDF sollten mitgeliefert werden)",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -412,23 +386,20 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "Markdown (*.md)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "Word (*.doc)",
-    "Bemerkungen": "",
+    "Datenformate": "Word *.doc",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "text"
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "PowerPoint (*.ppt)",
-    "Bemerkungen": "",
+    "Datenformate": "PowerPoint *.ppt",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "text"
@@ -436,7 +407,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Unformatierter Text",
     "Datenformate": "Unformatierter Text (*.txt, *.asc, *.c, *.h, *.cpp, *.m, *.py, *.r usw.)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -444,7 +414,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Unformatierter Text",
     "Datenformate": "Markdown (*.md)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -452,7 +421,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Musik",
     "Datenformate": "Music Encoding Initiative (MEI)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -460,7 +428,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Musik",
     "Datenformate": "MusicXML",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -468,127 +435,111 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Musik",
     "Datenformate": "Parsons Code",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Musik",
-    "Datenformate": "PDF A (Portable Document Format A)",
-    "Bemerkungen": "Wurde nicht gesagt, inwiefern es priorisiert wird",
+    "Datenformate": "Portable Document Format A (PDF A)",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
-    "Ampel": "n/a",
-    "Kategorie": "multimedia"
-  },
-  {
-    "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "TIFF, TIFF-LZW (Master: baseline Tagged Image File Format, unkomprimiert; TIFF mit Lempel-Ziv-Welch-Komprimierung)",
-    "Bemerkungen": "lzv.nrw: empfohlen für Langzeitarchivierung",
-    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "JPEG 1 und JPEG 2000 (Joint Photographic Experts Group, verlustfrei komprimiert, lizenzfreie Bereiche)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Datenformate": "Master: baseline Tagged Image File Format (TIFF), unkomprimiert; TIFF mit Lempel-Ziv-Welch-Komprimierung (TIFF-LZW)",
+    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
-    "Kategorie": "multimedia"
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "PDF A (Portable Document Format A)",
-    "Bemerkungen": "",
+    "Datenformate": "Joint Photographic Experts Group (JPEG 1 und JPEG 2000), verlustfrei komprimiert, lizenzfreie Bereiche",
+    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "grün",
+    "Kategorie": "image"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "PDF-Format, Typ PDF/A-2",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
-    "Kategorie": "multimedia"
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Rastergrafiken)",
     "Datenformate": "Präsentationsformate (Derivate): JPEG, JPEG 2000, Portable Network Graphics (PNG)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
-    "Kategorie": "multimedia"
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "DNG (Rohdaten: Digital Negative)",
-    "Bemerkungen": "",
+    "Datenformate": "Rohdaten: Digital Negative (DNG)",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
-    "Kategorie": "multimedia"
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "PSD (Photoshop)",
-    "Bemerkungen": "ETH Zürich (2025): Nicht geeignet",
+    "Datenformate": "Photoshop (*.psd)",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
-    "Kategorie": "multimedia"
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
-    "Datenformate": "SVG (Scalable Vector Graphics)",
-    "Bemerkungen": "Empfohlen ohne JavaScript Binding",
+    "Datenformate": "Scalable Vector Graphics (SVG)",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
-    "Kategorie": "multimedia"
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "AutoCAD Drawing (*.dwg)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
-    "Kategorie": "multimedia"
+    "Ampel": "rot",
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Drawing Interchange Format, AutoCAD (*.dxf)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
-    "Ampel": "orange",
-    "Kategorie": "multimedia"
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "gelb",
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Extensible 3D, X3D (*.x3d, *.x3dv, *.x3db)",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
-    "Kategorie": "multimedia"
+    "Ampel": "grün",
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Encapsulated Postscript (*.eps)",
-    "Bemerkungen": "ETH Zürich (2025): Nicht geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
-    "Kategorie": "multimedia"
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Grafik InDesign (*.indd), Illustrator (*.ait)",
-    "Bemerkungen": "ETH Zürich (2025): Nicht geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
-    "Kategorie": "multimedia"
+    "Kategorie": "image"
   },
   {
     "Dateiart": "Audio",
     "Datenformate": "Archivformat: Waveform Audio File-Format (WAV) in Verbindung mit Pulse Code Modulation (PCM); Free Lossless Audio Codec (FLAC)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Audio",
     "Datenformate": "Advanced Audio Coding (*.mp4)",
-    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -596,15 +547,13 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Audio",
     "Datenformate": "MP3 (*.mp3)",
-    "Bemerkungen": "ETH Zürich (2025):Bedingt geeignet, HI: Nicht empfohlen",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
+    "Ampel": "rot",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Audio",
     "Datenformate": "Präsentationsformat: MPEG-2 Audiolayer III (MP3)",
-    "Bemerkungen": "Nicht empfohlen laut HI, bedingt geeignet laut ETH Zürich",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -612,31 +561,27 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Archivformate:",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "",
-    "Ampel": "n/a",
+    "Ampel": "unbekannt",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Codec FFV1 / Container MKV",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
     "Datenformate": "TIFF mit FFV1 in Matroshka codiert",
-    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "MPEG-4 Moving Picture Experts Group Standard",
-    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
+    "Datenformate": "Moving Picture Experts Group Standard MPEG-4",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -644,7 +589,6 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Präsentationsformat: MP4 (MPEG-4, part 14)",
-    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -652,31 +596,27 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Video/Film",
     "Datenformate": "MPEG-2 (*.mpg,*.mpeg)",
-    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
+    "Ampel": "rot",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "MOV QuickTime Movie (*.mov)",
-    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
+    "Datenformate": "QuickTime Movie (*.mov)",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
+    "Ampel": "rot",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "AVI Audio Video Interleave (*.avi)",
-    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet, lzv.nrw: empfohlen",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
-    "Ampel": "orange",
+    "Datenformate": "Audio Video Interleave (*.avi)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "rot",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "WMV Windows Media Video (*.wmv)",
-    "Bemerkungen": "ETH Zürich (2025): Nicht geeignet",
+    "Datenformate": "Windows Media Video (*.wmv)",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "multimedia"
@@ -684,39 +624,34 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Video/Film",
     "Datenformate": "weitere Empfehlungen der nestor AG Media",
-    "Bemerkungen": "Wurde nicht spezifiert, ob es für Langzeitarchivierung geeignet ist.",
     "Quellen zur Ampel": "",
-    "Ampel": "n/a",
+    "Ampel": "unbekannt",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "MJPEG2000 (Moving Picture Experts Group Motion JPEG 2000)",
-    "Bemerkungen": "Wurde nicht spezifiert, ob es für Langzeitarchivierung geeignet ist.",
+    "Datenformate": "Moving Picture Experts Group Motion JPEG 2000 (MJPEG2000)",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
-    "Ampel": "n/a",
+    "Ampel": "orange",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "DPX (Digital Picture Exchange), SMPTE 268M-2003, v 2.0",
-    "Bemerkungen": "Wurde nicht spezifiert, ob es für Langzeitarchivierung geeignet ist.",
+    "Datenformate": "Digital Picture Exchange (DPX), SMPTE 268M-2003, v 2.0",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
-    "Ampel": "n/a",
+    "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "MXF (Material Exchange Format), SMPTE 377M",
-    "Bemerkungen": "Wurde nicht spezifiert, ob es für Langzeitarchivierung geeignet ist.",
+    "Datenformate": "Material Exchange Format (MXF), SMPTE 377M",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
-    "Ampel": "n/a",
+    "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "3D",
-    "Datenformate": "glTF (Graphics Language Transmission Format)",
-    "Bemerkungen": "",
+    "Datenformate": "Graphics Language Transmission Format (glTF)",
     "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "multimedia"
@@ -724,39 +659,125 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "3D",
     "Datenformate": "Wavefront Object (OBJ)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "orange",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "3D",
     "Datenformate": "Extensible 3D (X3D)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social, NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "orange",
+    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "grün",
     "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme",
+    "Datenformate": "Shapefile",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme",
+    "Datenformate": "Geopackage (*.gpkg)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme",
+    "Datenformate": "GeoJSON (*.geojson, *.json)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme",
+    "Datenformate": "GeoTIFF (*.tiff)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Geoinformationssysteme",
+    "Datenformate": "GML (*.gml)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Statistik",
+    "Datenformate": "R-Data-Formate (*.rda, *.rds)",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Statistik",
+    "Datenformate": "SPSS (*.sav)",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Webseiten/Webarchiv",
+    "Datenformate": "MIME Encapsulation of Aggregate Documents, Memento, WACZ, WARC",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Archivpakete (Rohdaten)",
+    "Datenformate": "BagIt",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Bibliographische Daten",
+    "Datenformate": "Bibliographical Information Standard, BIBFRAME, Dublin Core, MARC 21, METS, MODS, TEI Header",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "EAD, Dublin Core, MAB, MARC 21, METS, MODS, museumdat, ONIX, PICA, RIS, Schemas",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
+  },
+  {
+    "Dateiart": "Metadatenformate",
+    "Datenformate": "VZG Articleformat",
+    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
+    "Ampel": "grün",
+    "Kategorie": "data"
   }
 ]
-`;
+        `;
 
-function loadData() {
-    const tableBody = document.getElementById('format-table-body');
-    tableBody.innerHTML = `<tr><td colspan=\"5\" class=\"text-center py-4 text-gray-500\">Lade Daten...</td></tr>`;
-
-    try {
-        const fileFormatsData = JSON.parse(fileFormatsJSONString);
-        generateTableRows(fileFormatsData);
-        setupFilters();
-    } catch (error) {
-        console.error('Fehler beim Parsen der eingebetteten JSON-Daten:', error);
-        tableBody.innerHTML = `<tr><td colspan=\"5\" class=\"text-center py-4 text-red-500\">Fehler beim Laden der Daten: ${error.message}</td></tr>`;
-    }
-}
+        // Die Funktion zum Laden der Daten wird nun angepasst, um den eingebetteten String zu verwenden.
+        function loadData() {
+            const tableBody = document.getElementById('format-table-body');
+            const colspan = isSourcesVisible ? 4 : 3;
+            tableBody.innerHTML = `<tr><td colspan="${colspan}" class="text-center py-4 text-gray-500">Lade Daten...</td></tr>`;
+            
+            try {
+                // Parsen des JSON-Strings in ein JavaScript-Objekt
+                const fileFormatsData = JSON.parse(fileFormatsJSONString);
+                generateTableRows(fileFormatsData);
+                setupFilters();
+            } catch (error) {
+                console.error('Fehler beim Parsen der eingebetteten JSON-Daten:', error);
+                tableBody.innerHTML = `<tr><td colspan="${colspan}" class="text-center py-4 text-red-500">Fehler beim Laden der Daten: ${error.message}</td></tr>`;
+            }
+        }
+        
+        // Initialer Aufruf zum Laden der Daten, wenn die Seite geladen ist.
         document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
-
 </html>
 
 
