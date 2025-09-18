@@ -293,7 +293,7 @@ const fileFormatsJSONString = `
     "Dateiart": "Text",
     "Datenformate": "XML 1.1 (Extensible Markup Language)",
     "Bemerkungen": "inklusive XSD/XSL/XHTML etc.; wobei Schema und Buchstabenkodierung explizit im File angegeben werden sollen",
-    "Quellen zur Ampel": "ETH Zürich (2025): https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Quellen zur Ampel": "ETH Zürich (2025): https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate, NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "text"
   },
@@ -324,7 +324,7 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "Portable Document Format A (PDF A)",
-    "Bemerkungen": "z. B. PDF/A-1, PDF/A-2, PDF/A-3 (wobei PDF/A-2 als optimal gilt)",
+    "Bemerkungen": "HI: Priorisiertes Datenformat für Langzeitarchivierung",
     "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
     "Ampel": "grün",
     "Kategorie": "text"
@@ -332,7 +332,7 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "OOXML (Office Open Extensible Markup Language)",
-    "Bemerkungen": "z.B. docx, xlsx, pptx",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "text"
@@ -340,7 +340,7 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Text",
     "Datenformate": "PDF/A-3 (*.pdf)",
-    "Bemerkungen": "inkl. des Original-Datensatzes",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "text"
@@ -395,8 +395,8 @@ const fileFormatsJSONString = `
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "Word *.docx",
-    "Bemerkungen": "",
+    "Datenformate": "Word (*.docx)",
+    "Bemerkungen": "ETH Zürich (2025):Bedingt geeignet, nicht akzeptiert für Publikationen, akzeptiert für Supplementary Materials",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "text"
@@ -419,7 +419,7 @@ const fileFormatsJSONString = `
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "Word *.doc",
+    "Datenformate": "Word (*.doc)",
     "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
@@ -427,7 +427,7 @@ const fileFormatsJSONString = `
   },
   {
     "Dateiart": "Text",
-    "Datenformate": "PowerPoint *.ppt",
+    "Datenformate": "PowerPoint (*.ppt)",
     "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
@@ -475,7 +475,47 @@ const fileFormatsJSONString = `
   },
   {
     "Dateiart": "Musik",
-    "Datenformate": "Portable Document Format A (PDF A)",
+    "Datenformate": "PDF A (Portable Document Format A)",
+    "Bemerkungen": "Wurde nicht gesagt, inwiefern es priorisiert wird",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Ampel": "n/a",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "TIFF, TIFF-LZW (Master: baseline Tagged Image File Format, unkomprimiert; TIFF mit Lempel-Ziv-Welch-Komprimierung)",
+    "Bemerkungen": "lzv.nrw: empfohlen für Langzeitarchivierung",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "JPEG 1 und JPEG 2000 (Joint Photographic Experts Group, verlustfrei komprimiert, lizenzfreie Bereiche)",
+    "Bemerkungen": "",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "PDF A (Portable Document Format A)",
+    "Bemerkungen": "",
+    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
+    "Ampel": "grün",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "Präsentationsformate (Derivate): JPEG, JPEG 2000, Portable Network Graphics (PNG)",
+    "Bemerkungen": "",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Ampel": "orange",
+    "Kategorie": "multimedia"
+  },
+  {
+    "Dateiart": "Bild (Rastergrafiken)",
+    "Datenformate": "DNG (Rohdaten: Digital Negative)",
     "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
@@ -483,112 +523,72 @@ const fileFormatsJSONString = `
   },
   {
     "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "Master: baseline Tagged Image File Format (TIFF), unkomprimiert; TIFF mit Lempel-Ziv-Welch-Komprimierung (TIFF-LZW)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
-    "Ampel": "grün",
-    "Kategorie": "image"
-  },
-  {
-    "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "Joint Photographic Experts Group (JPEG 1 und JPEG 2000), verlustfrei komprimiert, lizenzfreie Bereiche",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
-    "Ampel": "grün",
-    "Kategorie": "image"
-  },
-  {
-    "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "PDF-Format, Typ PDF/A-2",
-    "Bemerkungen": "wenn keine Weiterverarbeitung von Text oder Bildteilen der Datei vorgesehen ist",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "image"
-  },
-  {
-    "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "Präsentationsformate: JPEG, JPEG 2000, Portable Network Graphics (PNG)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "grün",
-    "Kategorie": "image"
-  },
-  {
-    "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "Rohdaten: Digital Negative (DNG)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
-    "Ampel": "grün",
-    "Kategorie": "image"
-  },
-  {
-    "Dateiart": "Bild (Rastergrafiken)",
-    "Datenformate": "Photoshop (*.psd)",
-    "Bemerkungen": "",
+    "Datenformate": "PSD (Photoshop)",
+    "Bemerkungen": "ETH Zürich (2025): Nicht geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
-    "Kategorie": "image"
+    "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
-    "Datenformate": "Scalable Vector Graphics (SVG)",
-    "Bemerkungen": "",
+    "Datenformate": "SVG (Scalable Vector Graphics)",
+    "Bemerkungen": "Empfohlen ohne JavaScript Binding",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "grün",
-    "Kategorie": "image"
+    "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "AutoCAD Drawing (*.dwg)",
     "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "rot",
-    "Kategorie": "image"
+    "Ampel": "orange",
+    "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Drawing Interchange Format, AutoCAD (*.dxf)",
-    "Bemerkungen": "Nur falls DWG nicht vorhanden",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "gelb",
-    "Kategorie": "image"
+    "Bemerkungen": "",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "orange",
+    "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Extensible 3D, X3D (*.x3d, *.x3dv, *.x3db)",
     "Bemerkungen": "",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "grün",
-    "Kategorie": "image"
+    "Ampel": "orange",
+    "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Encapsulated Postscript (*.eps)",
-    "Bemerkungen": "",
+    "Bemerkungen": "ETH Zürich (2025): Nicht geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
-    "Kategorie": "image"
+    "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "Grafik InDesign (*.indd), Illustrator (*.ait)",
-    "Bemerkungen": "",
+    "Bemerkungen": "ETH Zürich (2025): Nicht geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
-    "Kategorie": "image"
+    "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Audio",
     "Datenformate": "Archivformat: Waveform Audio File-Format (WAV) in Verbindung mit Pulse Code Modulation (PCM); Free Lossless Audio Codec (FLAC)",
     "Bemerkungen": "",
-    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Audio",
     "Datenformate": "Advanced Audio Coding (*.mp4)",
-    "Bemerkungen": "",
+    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -596,47 +596,47 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Audio",
     "Datenformate": "MP3 (*.mp3)",
-    "Bemerkungen": "",
+    "Bemerkungen": "ETH Zürich (2025):Bedingt geeignet, HI: Nicht empfohlen",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "rot",
+    "Ampel": "orange",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Audio",
     "Datenformate": "Präsentationsformat: MPEG-2 Audiolayer III (MP3)",
-    "Bemerkungen": "",
+    "Bemerkungen": "Nicht empfohlen laut HI, bedingt geeignet laut ETH Zürich",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "Archivformate: ",
-    "Bemerkungen": "nestor Handreichung zu Bewegtbild- und Audiodaten",
-    "Quellen zur Ampel": "nestor AG Media, https://nestor.sub.uni-goettingen.de/handreichungen/nestor_handreichung_media.pdf",
-    "Ampel": "unbekannt",
+    "Datenformate": "Archivformate:",
+    "Bemerkungen": "",
+    "Quellen zur Ampel": "",
+    "Ampel": "n/a",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Codec FFV1 / Container MKV",
     "Bemerkungen": "",
-    "Quellen zur Ampel": "lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
     "Datenformate": "TIFF mit FFV1 in Matroshka codiert",
-    "Bemerkungen": "als Standard empfohlen",
+    "Bemerkungen": "",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "Moving Picture Experts Group Standard MPEG-4",
-    "Bemerkungen": "",
+    "Datenformate": "MPEG-4 Moving Picture Experts Group Standard",
+    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -644,7 +644,7 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Video/Film",
     "Datenformate": "Präsentationsformat: MP4 (MPEG-4, part 14)",
-    "Bemerkungen": "mit Videocodierung H.264 und Audiocodierung AAC",
+    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "orange",
     "Kategorie": "multimedia"
@@ -652,31 +652,31 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Video/Film",
     "Datenformate": "MPEG-2 (*.mpg,*.mpeg)",
-    "Bemerkungen": "",
+    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "rot",
+    "Ampel": "orange",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "QuickTime Movie (*.mov)",
-    "Bemerkungen": "",
+    "Datenformate": "MOV QuickTime Movie (*.mov)",
+    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "rot",
+    "Ampel": "orange",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "Audio Video Interleave (*.avi)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "rot",
+    "Datenformate": "AVI Audio Video Interleave (*.avi)",
+    "Bemerkungen": "ETH Zürich (2025): Bedingt geeignet, lzv.nrw: empfohlen",
+    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social",
+    "Ampel": "orange",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "Windows Media Video (*.wmv)",
-    "Bemerkungen": "",
+    "Datenformate": "WMV Windows Media Video (*.wmv)",
+    "Bemerkungen": "ETH Zürich (2025): Nicht geeignet",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
     "Ampel": "rot",
     "Kategorie": "multimedia"
@@ -684,398 +684,75 @@ const fileFormatsJSONString = `
   {
     "Dateiart": "Video/Film",
     "Datenformate": "weitere Empfehlungen der nestor AG Media",
-    "Bemerkungen": "https://nestor.sub.uni-goettingen.de/nestor-ag-media.html",
-    "Quellen zur Ampel": "nestor AG Media",
-    "Ampel": "unbekannt",
+    "Bemerkungen": "Wurde nicht spezifiert, ob es für Langzeitarchivierung geeignet ist.",
+    "Quellen zur Ampel": "",
+    "Ampel": "n/a",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "Moving Picture Experts Group Motion JPEG 2000 (MJPEG2000)",
-    "Bemerkungen": "",
+    "Datenformate": "MJPEG2000 (Moving Picture Experts Group Motion JPEG 2000)",
+    "Bemerkungen": "Wurde nicht spezifiert, ob es für Langzeitarchivierung geeignet ist.",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
-    "Ampel": "orange",
+    "Ampel": "n/a",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "Digital Picture Exchange (DPX), SMPTE 268M-2003, v 2.0",
-    "Bemerkungen": "",
+    "Datenformate": "DPX (Digital Picture Exchange), SMPTE 268M-2003, v 2.0",
+    "Bemerkungen": "Wurde nicht spezifiert, ob es für Langzeitarchivierung geeignet ist.",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
-    "Ampel": "grün",
+    "Ampel": "n/a",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "Material Exchange Format (MXF), SMPTE 377M",
-    "Bemerkungen": "",
+    "Datenformate": "MXF (Material Exchange Format), SMPTE 377M",
+    "Bemerkungen": "Wurde nicht spezifiert, ob es für Langzeitarchivierung geeignet ist.",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
-    "Ampel": "grün",
+    "Ampel": "n/a",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "3D",
     "Datenformate": "glTF (Graphics Language Transmission Format)",
     "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "3D",
     "Datenformate": "Wavefront Object (OBJ)",
-    "Bemerkungen": "empfohlen mit MTL und Texturen",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
+    "Bemerkungen": "",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "orange",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "3D",
     "Datenformate": "Extensible 3D (X3D)",
     "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate, lzv.nrw: https://www.lzv.nrw/dateiformate/?mtm_campaign=tafellaunch&mtm_medium=social, NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Ampel": "orange",
     "Kategorie": "multimedia"
-  },
-  {
-    "Dateiart": "3D",
-    "Datenformate": "Präsentationsformat: glTF, X3D, OBJ",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
-    "Kategorie": "multimedia"
-  },
-  {
-    "Dateiart": "3D",
-    "Datenformate": "COLLAborative Design Activity (COLLADA)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "rot",
-    "Kategorie": "multimedia"
-  },
-  {
-    "Dateiart": "Tabellen",
-    "Datenformate": "XML (Extensible Markup Language) 1.1, mit XML Schema Definition (XSD)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Tabellen",
-    "Datenformate": "CSV (Comma-Separated Values)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Tabellen",
-    "Datenformate": "Excel *.xlsx (Containerformat)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Tabellen",
-    "Datenformate": "OpenDocument Formate (*.odm, *.odt, *.odg, *.odc, *.odf)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Tabellen",
-    "Datenformate": "Excel *.xls, *.xlsb (binäre Formate)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "rot",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Datenbanken",
-    "Datenformate": "SIARD (Software Independent Archival of Relational Databases)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Datenbanken",
-    "Datenformate": "Structured Query Language (SQL)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Datenbanken",
-    "Datenformate": "MS Access 2010/2016",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "rot",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Datenbanken",
-    "Datenformate": "Export und externe Speicherung der Datenbankinhalte empfohlen, z. B. als XML, CSV, JSON mit Entitäten-Relationen-Diagramm (ERD)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "Vektordaten: ESRI Shapefile",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "Vektordaten als ESRI ArcGIS/ARCView ShapeFile",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "OGC GeoPackage (OpenSource)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "Rasterbilddaten als Geo-TIFF",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "ESRI World-File (Rastergrafik)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "Keyhole Mark-Up Language (kml)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "orange",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "Geography Markup Language (gml)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "Längen- und Breitenangaben (alternativ)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Geoinformationssysteme (GIS)",
-    "Datenformate": "Rasterdaten: Open Geospatial Consortium GeoTIFF",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "https://www.iso.org/standard/32575.html",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Webseiten",
-    "Datenformate": "HTML5 (Hypertext Markup Language)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Webseiten",
-    "Datenformate": "XHTML (Extensible Hypertext Markup Language)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Webseiten",
-    "Datenformate": "RDFa (Resource Description Framework in Attributes)",
-    "Bemerkungen": "für das Einbetten von RDF-Statements in HTML und XHTML",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Statistik",
-    "Datenformate": "R (Sprache und Umgebung für statistische Berechnungen und Grafiken)",
-    "Bemerkungen": "Empfohlen als Skript oder Quellcode in Textdateien",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "orange",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Webarchiv",
-    "Datenformate": "WARC-Format (Web Archive Format)",
-    "Bemerkungen": "mit zugehörigen Metadaten",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Webarchiv",
-    "Datenformate": "HTML + CSS (Hyper Text Markup Language + Cascading Style Sheets)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Bagit",
-    "Datenformate": "Bagit (File Packaging Format)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Bagit",
-    "Datenformate": "ZIP-Format (PKZip)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Bagit",
-    "Datenformate": "GZIP (GNU Zip)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Bagit",
-    "Datenformate": "TAR (abgeleitet von „tape archive“)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Herder-Institut Marburg (2023): https://drive.google.com/drive/folders/1xvJaDfa8_DSKHip0A884QhLpoJXAoyZC",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Rohdaten und Workspace",
-    "Datenformate": "ASCII Text ist langfristig nutzbar, die spätere maschinelle Lesbarkeit ist jedoch unter Umständen aufwendig.",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Rohdaten und Workspace",
-    "Datenformate": "S-Plus (*.sdd) am ehesten als Text-Dateien speichern.",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Rohdaten und Workspace",
-    "Datenformate": "Matlab *.mat am ehesten in HDF5 Format speichern. Nichttriviale Matlab *.mat ASCII Files vermeiden, denn sie können mit load nicht gelesen werden (siehe Tabelle 2).",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "orange",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Rohdaten und Workspace",
-    "Datenformate": "Network Common Data Format oder NetCDF (*.nc, *.cdf)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Rohdaten und Workspace",
-    "Datenformate": "Hierarchical Data Format (HDF5) (*.h5, *.hdf5, *.he5)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Rohdaten und Workspace",
-    "Datenformate": "Binäre Dateien wie veraltete Matlab Dateien *.mat (binär), R Dateien *.RData",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "rot",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Bibilographische Daten (Zitationsformate)",
-    "Datenformate": "allegro",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Bibilographische Daten (Zitationsformate)",
-    "Datenformate": "CSL-JSON",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Bibilographische Daten (Zitationsformate)",
-    "Datenformate": "BibJSON",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Bibilographische Daten (Zitationsformate)",
-    "Datenformate": "BibTeX",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Bibilographische Daten (Zitationsformate)",
-    "Datenformate": "Citation File Format (CFF)",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
-    "Ampel": "grün",
-    "Kategorie": "data"
-  },
-  {
-    "Dateiart": "Metadatenformate",
-    "Datenformate": "VZG Articleformat",
-    "Bemerkungen": "",
-    "Quellen zur Ampel": "Verbundzentrale des GBV: https://format.gbv.de/application/bibliographic",
-    "Ampel": "grün",
-    "Kategorie": "data"
   }
 ]
 `;
 
+function loadData() {
+    const tableBody = document.getElementById('format-table-body');
+    tableBody.innerHTML = `<tr><td colspan=\"5\" class=\"text-center py-4 text-gray-500\">Lade Daten...</td></tr>`;
+
+    try {
+        const fileFormatsData = JSON.parse(fileFormatsJSONString);
+        generateTableRows(fileFormatsData);
+        setupFilters();
+    } catch (error) {
+        console.error('Fehler beim Parsen der eingebetteten JSON-Daten:', error);
+        tableBody.innerHTML = `<tr><td colspan=\"5\" class=\"text-center py-4 text-red-500\">Fehler beim Laden der Daten: ${error.message}</td></tr>`;
+    }
+}
         // Die Funktion zum Laden der Daten wird nun angepasst, um den eingebetteten String zu verwenden.
         function loadData() {
             const tableBody = document.getElementById('format-table-body');
@@ -1098,6 +775,7 @@ const fileFormatsJSONString = `
 </body>
 
 </html>
+
 
 
 
