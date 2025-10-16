@@ -147,6 +147,31 @@
             const tableBody = document.getElementById('format-table-body');
             tableBody.innerHTML = ''; // Leere den Tabellenkörper
 
+           function escapeHtml(str) {
+               return String(str || '')
+                   .replace(/&/g, '&amp;')
+                   .replace(/</g, '&lt;')
+                   .replace(/>/g, '&gt;')
+                   .replace(/"/g, '&quot;')
+                   .replace(/'/g, '&#39;');
+           }
++
++           function formatSourceCell(src) {
++               if (!src) return '';
++               // URL extrahieren (erste http(s)://...)
++               const m = String(src).match(/(https?:\/\/\S+)/);
++               if (m) {
++                   const url = m[0];
++                   const name = src.replace(url, '').trim().replace(/[:\s]+$/, '');
++                   return `${escapeHtml(name)}<br><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">${escapeHtml(url)}</a>`;
++               }
++               // Kein URL: bei erstem ":" trennen
++               const parts = String(src).split(/:\s*/, 2);
++               if (parts.length === 2) return `${escapeHtml(parts[0])}<br>${escapeHtml(parts[1])}`;
++               // Fallback: kompletten Text
++               return escapeHtml(src);
++           }
+
             data.forEach(item => {
                 // Versuche, 'Kategorie' direkt aus dem JSON-Objekt zu lesen, ansonsten leite es ab
                 let category = item['Kategorie'] ? item['Kategorie'].toLowerCase() : '';
@@ -180,7 +205,7 @@
                             ${getStatusText(status)}
                         </span>
                     </td>
-                    <td class="px-6 py-4 text-sm text-gray-500">${item['Quellen zur Ampel'] || ''}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatSourceCell(item['Quellen zur Ampel'] || '')}</td>
                 `;
                 tableBody.appendChild(row);
             });
