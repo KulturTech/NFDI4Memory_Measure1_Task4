@@ -1010,6 +1010,13 @@
 
         // Stelle sicher, dass die Daten geladen werden, sobald das DOM bereit ist
         document.addEventListener('DOMContentLoaded', loadData);
++        // Falls das Script erst nach dem DOMContentLoaded ausgeführt wird, ruft addEventListener nicht mehr.
++        // Daher hier robust prüfen und ggf. direkt loadData() aufrufen.
++        if (document.readyState === 'loading') {
++            document.addEventListener('DOMContentLoaded', loadData);
++        } else {
++            loadData();
++        }
     </script>
 </body>
 </html>
