@@ -240,10 +240,12 @@
         }
 
         // Optional: Den Zustand des neuen Buttons visuell darstellen
-        if (sourcesVisible) {
-            toggleSourcesButton.classList.add('active-filter'); // Oder eine andere Klasse
-        } else {
-            toggleSourcesButton.classList.remove('active-filter');
+        if (toggleSourcesButton) {
+            if (sourcesVisible) {
+                toggleSourcesButton.classList.add('active-filter'); // Oder eine andere Klasse
+            } else {
+                toggleSourcesButton.classList.remove('active-filter');
+            }
         }
     }
 
@@ -295,19 +297,23 @@
     });
 
     // Event-Listener für "Alle Formate"
-    showAllButton.addEventListener('click', () => {
-        activeCategory = null;
-        activeStatus = null;
-        updateButtonState();
-        applyFilters();
-    });
+    if (showAllButton) {
+        showAllButton.addEventListener('click', () => {
+            activeCategory = null;
+            activeStatus = null;
+            updateButtonState();
+            applyFilters();
+        });
+    }
 
     // Event-Listener für den neuen Toggle-Button
-    toggleSourcesButton.addEventListener('click', () => {
-        sourcesVisible = !sourcesVisible; // Zustand umkehren
-        updateButtonState();
-        applyFilters();
-    });
+    if (toggleSourcesButton) {
+        toggleSourcesButton.addEventListener('click', () => {
+            sourcesVisible = !sourcesVisible; // Zustand umkehren
+            updateButtonState();
+            applyFilters();
+        });
+    }
 
     // Initialen Zustand setzen
     updateButtonState();
