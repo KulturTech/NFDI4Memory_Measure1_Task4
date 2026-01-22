@@ -127,7 +127,7 @@
                     </tr>
                 </thead>
                 <tbody id="format-table-body" class="bg-white divide-y divide-gray-200">
-                    <tr><td colspan="4" class="text-center py-4 text-gray-500">Lade Daten...</td></tr>
+                    <tr><td colspan="5" class="text-center py-4 text-gray-500">Lade Daten...</td></tr>
                 </tbody>
             </table>
         </div>
@@ -1146,7 +1146,7 @@
         // Die Funktion zum Laden der Daten wird nun angepasst, um den eingebetteten String zu verwenden.
         function loadData() {
             const tableBody = document.getElementById('format-table-body');
-            tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-gray-500">Lade Daten...</td></tr>`;
+            tableBody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-gray-500">Lade Daten...</td></tr>`;
             
             try {
                 // Parsen des JSON-Strings in ein JavaScript-Objekt
@@ -1171,5 +1171,3 @@
     </script>
 </body>
 </html>
-
-
