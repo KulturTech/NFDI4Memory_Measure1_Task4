@@ -123,6 +123,7 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Datenformate</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ampelstatus</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quelle(n)</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Anmerkungen</th>
                     </tr>
                 </thead>
                 <tbody id="format-table-body" class="bg-white divide-y divide-gray-200">
@@ -211,11 +212,46 @@
                         </span>
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500">${formatSourceCell(item['Quellen zur Ampel'] || '')}</td>
+                    <td class= "px-6 py-4 text-sm text-gray-500">
+                      <input type= "text"
+                             class="notes-input w-full px-2 border border-gray-300 rounded focus:outline-none focus:rung-2 focus':ring-blue-500"
+                             placeholder="Anmerkung hinzufügen..."
+                             data-format="${escapeHtml(item['Datenformate'] || '')}"
+                             value="">
+                    </td>
                 `;
                 tableBody.appendChild(row);
             });
+
+            // Nach dem Erstellen aller Zeilen: Anmerkungen aus LocalStorage laden
+            loadNotes();
+            setupNotesListeners();
         }
 
+        //Funktion zum Laden aller Anmerkungen aus LocalStorage 
+        function loadNotes() {
+        try {
+            const notes = JSON.parse(localStorage.getItem('fileFormatNotes') || '{}');
+            document.querySelectorAll('.notes-input').forEach(input => {
+                const formatKey = input.getAttribute('data-format');
+                if (formatKey && notes[formatKey]) {
+                    input.value = notes[formatKey];
+                }
+            });
+        } catch (e) {
+            console.error('Fehler beim Laden der Anmerkungen:', e);
+        }
+    }
+    // Funktion zum Einrichten der Event-Listener für Anmerkungsfelder
+    function setupNotesListeners() {
+      document.querySelectorAll('.notes-input').forEach(input => {
+        input.addEventListener('input', function() {
+          const formatKey = this.getAttribute('data-format');
+          const note = this.value
+          saveNote(formatKey, note);
+        });
+      });
+    }
         function setupFilters() {
     let activeCategory = null;
     let activeStatus = null;
