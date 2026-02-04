@@ -69,13 +69,13 @@
             <p class="text-gray-500 mt-6">Diese Anwendung enthält eine Liste von Dateiformaten, die in den historisch arbeitenden Wissenschaften gängig sind.* Diese Formate werden für die Arbeit mit Forschungsdaten empfohlen. Die gesammelten Informationen sind für Forschende aus der historischen Community nützlich, die Empfehlungen zum diesen Aspekt des Forschungsdatenmanagements suchen.  Über eine Filteroption haben Sie die Möglichkeit, diese Liste von Dateiformaten auf Empfehlungen für die Langzeitarchivierung hin zu durchsuchen. Dazu hat die Task Area „Data Quality“ in NFDI4Memory ein Ampelsystem entwickelt, um zwischen empfohlenen (grün), bedingt empfohlenen (orange) und nicht empfohlenen (rot) Dateiformaten zu unterscheiden.</p>
             <p>Die Langzeitverfügbarkeit (LZV) von Daten ist von den Formateigenschaften, den Lizenzbestimmungen sowie der Verbreitung und Nutzung der Daten abhängig. Dateiformate, die für eine Langzeitverfügbarkeit in Frage kommen, erlauben eine verlustfreie Speicherung ohne Kompression und sie sind einfach dekodierbar oder unmittelbar lesbar. Die empfohlenen oder bedingt empfohlenen Dateiformate sind mit einem ISO-Standard verbunden. Sie sollten</p>
             <ul class="list-disc list-inside text-left text-gray-700 mx-auto max-w-2xl mt-4">
-               <li id="fn-1">offen dokumentiert und frei von Patenten sein.</li>
-               <li id="fn-1">verlustfreie Speicherung ohne Kompression ermöglichen.<a href="#fn-ref-1">&uarr;</a></li>
-               <li id="fn-1">einfach dekodierbar oder unmittelbar lesbar sein.<a href="#fn-ref-1">&uarr;</a></li>
-               <li id="fn-1">mit einem ISO-Standard verbunden sein.<a href="#fn-ref-1">&uarr;</a></li>    
+               <li>offen dokumentiert und frei von Patenten sein.</li>
+               <li>verlustfreie Speicherung ohne Kompression ermöglichen.</li>
+               <li>einfach dekodierbar oder unmittelbar lesbar sein.</li>
+               <li>mit einem ISO-Standard verbunden sein.</li>    
             </ul>
             <p class="text-gray-500 mt-3">*Die Daten darüber, welche Dateiformate in den historisch arbeitenden Wissenschaften verwendet werden, haben wir aus den Ergebnissen der Umfrage "Praktiken, Standards und Bedarfe zur Datenqualität in den Communities der historisch arbeitenden Fächer" der Task Area "Data Quality" von NFDI4Memory gewonnen.</p>
-            <p class="text-gray-500 mt-3"><li id="fn-1"><a href="#fn-ref-1">&uarr;</a>10. Empfehlungen für Dateiformate | Handreichung für ein FAIRes Management kulturwissenschaftlicher Forschungsdaten. (o. D.). https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate</li></p>
+            <p class="text-gray-500 mt-3">10. Empfehlungen für Dateiformate | Handreichung für ein FAIRes Management kulturwissenschaftlicher Forschungsdaten. (o. D.). https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate</p>
             <h2 class="text-1xl sm:text-3xl font-bold text-gray-800 mt-8">Filteroptionen</h2>
         </header>
         <!-- Filter-Buttons -->
@@ -219,8 +219,8 @@
     let activeStatus = null;
     let sourcesVisible = true; // Neuer Zustand für die Sichtbarkeit der Quellen
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const categoryButtons = document.querySelectorAll('[data-category]');
-    const statusButtons = document.querySelectorAll('[data-status]');
+    const categoryButtons = document.querySelectorAll('button[data-category]');
+    const statusButtons = document.querySelectorAll('button[data-status]');
     const showAllButton = document.getElementById('showAll');
     const toggleSourcesButton = document.getElementById('toggleSources'); // Den neuen Button referenzieren
     const tableBody = document.getElementById('format-table-body');
@@ -1024,10 +1024,7 @@
             }
         }
 
-        // Stelle sicher, dass die Daten geladen werden, sobald das DOM bereit ist
-        document.addEventListener('DOMContentLoaded', loadData);
-        // Falls das Script erst nach dem DOMContentLoaded ausgeführt wird, ruft addEventListener nicht mehr.
-       // Daher hier robust prüfen und ggf. direkt loadData() aufrufen.
+        // Stelle sicher, dass die Daten geladen werden, sobald das DOM bereit ist.
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', loadData);
         } else {
