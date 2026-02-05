@@ -13,7 +13,7 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-            button[data-category].active-filter, #showAll.active-filter {
+        button[data-category].active-filter, #showAll.active-filter {
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
             background-color: #3b82f6; /* Setzt die Farbe auf Blau für Kategorien */
         }
@@ -42,8 +42,8 @@
             transition: all 0.2s ease-in-out;
             cursor: pointer;
         }
-            .hidden-source {
-              display: none;
+        .hidden-source {
+            display: none;
         }
     </style>
 </head>
@@ -59,7 +59,7 @@
                          Sie müssen die Logodatei (z.B. Logo_for_memory_RGB.svg)
                          in Ihr GitHub-Repository hochladen, idealerweise in einen Ordner namens `images`. -->
                     <img alt="Logo NFDI4Memory" src="images/Logo_for_memory_RGB.svg"
-                         onerror="this.onerror=null; this.src='images/Logo_for_memory_RGB.svg'"
+                         onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22100%22%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23666%22%3ENFDI4Memory%3C/text%3E%3C/svg%3E'"
                          class="mx-auto h-32 w-auto">
                 </a>
             </div>
@@ -364,7 +364,7 @@
   {
     "Dateiart": "Text",
     "Datenformate": "OOXML (Office Open Extensible Markup Language)",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Quellen zur Ampel": "Herder-Institut Marburg: https://zenodo.org/records/18389871",
     "Ampel": "orange",
     "Kategorie": "text"
   },
@@ -372,7 +372,7 @@
     "Dateiart": "Text",
     "Datenformate": "PDF/A-3 (*.pdf)",
     "Quellen zur Ampel": "Schweizerisches Bundesarchiv (BAR): https://www.bar.admin.ch/dam/bar/de/dokumente/konzepte_und_weisungen/archivtaugliche_dateiformate.1.pdf.download.pdf/archivtaugliche_dateiformate.pdf",
-    "Ampel": "orange",
+    "Ampel": "grün",
     "Kategorie": "text"
   },
   {
@@ -399,7 +399,7 @@
   {
     "Dateiart": "Text",
     "Datenformate": "OpenDocument Formate (*.odm, *.odt, *.odg, *.odc, *.odf)",
-    "Quellen zur Ampel": "kost-ceco: https://kost-ceco.ch/cms/kad_image_de.html",
+    "Quellen zur Ampel": "Herder-Institut Marburg: https://zenodo.org/records/18389871",
     "Ampel": "grün",
     "Kategorie": "text"
   },
@@ -428,7 +428,7 @@
     "Dateiart": "Text",
     "Datenformate": "LaTeX und TeX",
     "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
-    "Ampel": "grün",
+    "Ampel": "orange",
     "Kategorie": "text"
   },
   {
@@ -455,7 +455,7 @@
   {
     "Dateiart": "Unformatierter Text",
     "Datenformate": "Unformatierter Text (*.txt, *.asc, *.c, *.h, *.cpp, *.m, *.py, *.r usw.)",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Quellen zur Ampel": "Herder-Institut Marburg: https://zenodo.org/records/18389871",
     "Ampel": "grün",
     "Kategorie": "text"
   },
@@ -476,7 +476,7 @@
   {
     "Dateiart": "Musik",
     "Datenformate": "MusicXML",
-    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
+    "Quellen zur Ampel": "Herder-Institut Marburg: https://zenodo.org/records/18389871",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
@@ -540,13 +540,13 @@
     "Dateiart": "Bild (Rastergrafiken)",
     "Datenformate": "TIFF+EWF.XML- Tagged Image File Format und Exdended World Fil",
     "Quellen zur Ampel": "Schweizerisches Bundesarchiv (BAR): https://www.bar.admin.ch/dam/bar/de/dokumente/konzepte_und_weisungen/archivtaugliche_dateiformate.1.pdf.download.pdf/archivtaugliche_dateiformate.pdf",
-    "Ampel": "rot",
+    "Ampel": "grün",
     "Kategorie": "image"
   },
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "SVG Scalable Vector Graphics",
-    "Quellen zur Ampel": "kost-ceco: https://kost-ceco.ch/cms/kad_image_de.html",
+    "Quellen zur Ampel": "Herder-Institut Marburg: https://zenodo.org/records/18389871",
     "Ampel": "grün",
     "Kategorie": "image"
   },
@@ -574,7 +574,7 @@
   {
     "Dateiart": "Bild (Vektorgrafiken) und CAD",
     "Datenformate": "EPS Encapsulated Postscript",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Quellen zur Ampel": "Herder-Institut Marburg: https://zenodo.org/records/18389871",
     "Ampel": "rot",
     "Kategorie": "image"
   },
@@ -671,13 +671,6 @@
   },
   {
     "Dateiart": "Video/Film",
-    "Datenformate": "weitere Empfehlungen der nestor AG Media",
-    "Quellen zur Ampel": "",
-    "Ampel": "unbekannt",
-    "Kategorie": "multimedia"
-  },
-  {
-    "Dateiart": "Video/Film",
     "Datenformate": "MJPEG2000 Moving Picture Experts Group Motion JPEG 2000",
     "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "orange",
@@ -700,28 +693,28 @@
   {
     "Dateiart": "3D",
     "Datenformate": "gITF Graphics Language Transmission Format",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "3D",
     "Datenformate": "OBJ Wavefront Object",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "3D",
     "Datenformate": "X3D Extensible 3D",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
   {
     "Dateiart": "3D",
     "Datenformate": "Präsentationsformat: glTF, X3D, OBJ",
-    "Quellen zur Ampel": "NFDI4Cultue: https://docs.nfdi4culture.de/ta4-digital-preservation-basics/3-wie-kommen-materialien-in-ein-digitales-langzeitarchiv/3-4-identifizierung-erhaltenswerter-eigenschaften/dateiformate-fuer-die-langzeitarchivierung",
+    "Quellen zur Ampel": "NFDI4Culture: https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate",
     "Ampel": "grün",
     "Kategorie": "multimedia"
   },
@@ -756,7 +749,7 @@
   {
     "Dateiart": "Tabellen",
     "Datenformate": "OpenDocument Formate (*.odm, *.odt, *.odg, *.odc, *.odf)",
-    "Quellen zur Ampel": "ETH Zürich: https://unlimited.ethz.ch/spaces/DD/pages/194127898/Archivtaugliche+Dateiformate",
+    "Quellen zur Ampel": "Herder-Institut Marburg: https://zenodo.org/records/18389871",
     "Ampel": "grün",
     "Kategorie": "data"
   },
@@ -889,14 +882,14 @@
   {
     "Dateiart": "Webarchiv",
     "Datenformate": "WARC-Format (Web Archive Format)",
-    "Quellen zur Ampel": "kost-ceco: https://kost-ceco.ch/cms/kad_image_de.html",
+    "Quellen zur Ampel": "Herder-Institut Marburg: https://zenodo.org/records/18389871",
     "Ampel": "grün",
     "Kategorie": "data"
   },
   {
     "Dateiart": "Webarchiv",
     "Datenformate": "HTML + CSS (Hyper Text Markup Language + Cascading Style Sheets)",
-    "Quellen zur Ampel": "kost-ceco: https://kost-ceco.ch/cms/kad_image_de.html",
+    "Quellen zur Ampel": "Herder-Institut Marburg: https://zenodo.org/records/18389871",
     "Ampel": "grün",
     "Kategorie": "data"
   },
@@ -1013,7 +1006,7 @@
                 setupFilters();
             } catch (error) {
                 console.error('Fehler beim Parsen der eingebetteten JSON-Daten:', error);
-                tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-gray-500">Lade Daten...</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-red-500">Fehler beim Laden der Daten. Bitte laden Sie die Seite neu.</td></tr>`;
             }
         }
 
