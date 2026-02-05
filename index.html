@@ -13,7 +13,7 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-            button[data-category].active-filter, #showAll.active-filter {
+        button[data-category].active-filter, #showAll.active-filter {
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
             background-color: #3b82f6; /* Setzt die Farbe auf Blau für Kategorien */
         }
@@ -42,8 +42,8 @@
             transition: all 0.2s ease-in-out;
             cursor: pointer;
         }
-            .hidden-source {
-              display: none;
+        .hidden-source {
+            display: none;
         }
     </style>
 </head>
@@ -59,21 +59,21 @@
                          Sie müssen die Logodatei (z.B. Logo_for_memory_RGB.svg)
                          in Ihr GitHub-Repository hochladen, idealerweise in einen Ordner namens `images`. -->
                     <img alt="Logo NFDI4Memory" src="images/Logo_for_memory_RGB.svg"
-                         onerror="this.onerror=null; this.src='images/Logo_for_memory_RGB.svg'"
+                         onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22100%22%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23666%22%3ENFDI4Memory%3C/text%3E%3C/svg%3E'"
                          class="mx-auto h-32 w-auto">
                 </a>
             </div>
             <div class="pageTitle">
                 <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Interaktive Tafel gängiger Dateiformate (Langzeitarchivierung)</h1>
             </div>
-            <p class="text-gray-500 mt-6">Diese Anwendung enthält eine Liste von Dateiformaten, die in den historisch arbeitenden Wissenschaften gängig sind. Welche Dateiformate maßgeblich in den historisch arbeitenden Disziplinen verwendet werden, ist ein Ergebnis der Auswertung einer Community weiten Umfrage zu "Praktiken, Standards und Bedarfe[n] zur Datenqualität in den Communities der historisch arbeitenden Fächer" der Task Area "Data Quality" in NFDI4Memory. Zielgruppe der in dieser Anwendung versammelten Informationen sind Forschende aus der historischen Community sowie Mitarbeitende in Kultur- und Gedächtniseinrichtungen (GLAM-Institutionen).</p>
+            <p class="text-gray-500 mt-6">Diese Anwendung enthält eine Liste von Dateiformaten, die in den historisch arbeitenden Wissenschaften gängig sind. Welche Dateiformate maßgeblich in den historisch arbeitenden Disziplinen verwendet werden, ist ein Ergebnis der <a href="https://doi.org/10.5281/zenodo.17434287">Auswertung einer Community weiten Umfrage zu "Praktiken, Standards und Bedarfe[n] zur Datenqualität in den Communities der historisch arbeitenden Fächer" </a> Task Area "Data Quality" in NFDI4Memory. Zielgruppe der in dieser Anwendung versammelten Informationen sind Forschende aus der historischen Community sowie Mitarbeitende in Kultur- und Gedächtniseinrichtungen (GLAM-Institutionen).</p>
             <p>Die gelisteten Dateiformate werden für die Arbeit mit Forschungsdaten empfohlen. Über eine Filteroption haben Sie die Möglichkeit, die Liste mit Dateiformaten auf Empfehlungen für die Langzeitarchivierung hin zu durchsuchen. Dazu hat die Task Area „Data Quality“ ein Ampelsystem entwickelt, um zwischen empfohlenen (grün), bedingt empfohlenen (orange) und nicht empfohlenen (rot) Dateiformaten zu unterscheiden.</p>
             <p>Die Langzeitverfügbarkeit (LZV) von Daten ist von den Formateigenschaften, den Lizenzbestimmungen sowie der Verbreitung und Nutzung der Daten abhängig. Dateiformate, die für eine Langzeitverfügbarkeit in Frage kommen, erlauben eine verlustfreie Speicherung ohne Kompression und sie sind einfach dekodierbar oder unmittelbar lesbar. Die empfohlenen oder bedingt empfohlenen Dateiformate sind mit einem ISO-Standard verbunden. Sie sollten</p>
             <ul class="list-disc list-inside text-left text-gray-700 mx-auto max-w-2xl mt-4">
                <li>offen dokumentiert und nicht proprietär, d.h. frei von Patenten und möglichst unabhängig von einzelnen Softwareprodukten nutzbar, sein.</li>
                <li>verlustfreie Speicherung ohne Kompression ermöglichen</li>
-               <li>einfach dekodierbar oder unmittelbar lesbar sein.</li>
-               <li>mit einem ISO-Standard verbunden sein.</li>    
+               <li>einfach dekodierbar oder direkt lesbar sein.</li>
+               <li>mmit einem ISO-Standard oder entsprechender Normierung verbunden sein.</li>    
             </ul>
             <p class="text-gray-500 mt-3">10. Empfehlungen für Dateiformate | Handreichung für ein FAIRes Management kulturwissenschaftlicher Forschungsdaten. (o. D.). https://docs.nfdi4culture.de/ta2-fair-handreichung/empfehlungen-dateiformate</p>
             <h2 class="text-1xl sm:text-3xl font-bold text-gray-800 mt-8">Filteroptionen</h2>
@@ -1006,7 +1006,7 @@
                 setupFilters();
             } catch (error) {
                 console.error('Fehler beim Parsen der eingebetteten JSON-Daten:', error);
-                tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-gray-500">Lade Daten...</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-red-500">Fehler beim Laden der Daten. Bitte laden Sie die Seite neu.</td></tr>`;
             }
         }
 
