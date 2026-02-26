@@ -83,6 +83,7 @@ Die Anwendung ist unter einer Creative Commons Attribution 4.0 International Liz
                   [.csv]
                   [.json]
                   [.py]
+                  [.svg]
 
 ---
 
