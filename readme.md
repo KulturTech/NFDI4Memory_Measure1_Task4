@@ -1,4 +1,4 @@
-# Readme zur Dokumentation von Forschungsdatensätzen
+# Readme zu Priorisierten Dateiformaten in den historisch arbeitenden Fächern
 
 **Ersteller*in Readme:** [Gomes, Sera Ria]
 
