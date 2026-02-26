@@ -45,7 +45,7 @@ NFDI4Memory
 Die Interaktive Tafel gängiger Dateiformate (Langzeitarchivierung) ist eine webbasierte Anwendung, die im Rahmen von Measure 1, Task 4 der Task Area "Data Quality" von NFDI4Memory entwickelt wurde. Sie richtet sich an Forschende aus den historisch arbeitenden Wissenschaften sowie an Mitarbeitende in Kultur- und Gedächtniseinrichtungen (GLAM-Institutionen).
 
 ## Inhalt und Entstehungskontext
-Die Anwendung stellt eine kuratierte Übersicht gängiger Dateiformate bereit, die auf den Ergebnissen einer Community-weiten Umfrage zu Praktiken, Standards und Bedarfen zur Datenqualität in den historisch arbeitenden Disziplinen basiert (DOI: 10.5281/zenodo.17434287). Die Auswahl der Dateiformate sowie ihre Bewertung orientieren sich an der Handreichung der Task Area „Data Quality" und an Konventionen etablierter Institutionen wie KOST-CECO und dem Schweizerischen Bundesarchiv.
+Die Anwendung stellt eine kuratierte Übersicht gängiger Dateiformate bereit, die auf den Ergebnissen einer Community-weiten Umfrage zu Praktiken, Standards und Bedarfen zur Datenqualität in den historisch arbeitenden Disziplinen basiert (DOI: 10.5281/zenodo.17434287). Die Auswahl der Dateiformate sowie ihre Bewertung orientieren sich an der Handreichung der Task Area „Data Quality" und an Konventionen etablierter Institutionen wie KOST-CECO, Landesinitiative Langzeitverfügbarkeit des NRW und dem Schweizerischen Bundesarchiv.
 
 ## Struktur und Aufbau
 Die Datenbasis umfasst tabellarisch strukturierte Informationen zu Dateiformaten, gegliedert nach folgenden Spalten: Dateiart (Kategorie, z. B. Text & Textverarbeitung, Bild & Vektorgrafiken, Multimedia & Musik, Daten & Tabellen), Datenformat (spezifisches Format bzw. Dateiendung), Ampelstatus (Empfehlungsstatus zur Langzeitarchivierung) sowie Quelle(n) (Referenz auf zugrunde liegende Empfehlungen).
@@ -67,7 +67,7 @@ Die Anwendung ist unter einer Creative Commons Attribution 4.0 International Liz
                                       [Data set]
 
 ## Methode der Datenerhebung
-Literaturrecherche
+[Händische Online-Recherche in Datenbanken sowie Portalen, Repositorien, digitalen Archiven und Datenaggregationsdiensten]
 
 ---
 
